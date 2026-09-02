@@ -138,18 +138,20 @@ sources:
     # volume 1856 issue 52, pages 39-51.
     type: "article"
     location: "https://doi.org/10.1515/crll.1856.52.39"
-    relationship: "background"
+    relationship: "independently-proves"
     note: >-
       The classical origin of the signature statement for the Hankel
       form of a polynomial: the quadratic form with matrix (p_(i+j)),
       p_k the power sums of the roots, has rank equal to the number of
       distinct roots and signature (positive minus negative index)
-      equal to the number of distinct real roots. The compared Gram
-      matrices (1)-(2) are exactly these Hankel forms for x^3 - x - 1
-      and x^4 - x - 1, and the compared signatures (7)-(10) give the
-      Hermite counts 1 and 2 — the real-root counts of the two
-      trinomials. Cited as the classical setting; Hermite's general
-      theorem is not formalized here.
+      equal to the number of distinct real roots. INDEPENDENTLY PROVED
+      HERE AT TWO POLYNOMIALS ONLY: the compared Gram matrices (1)-(2)
+      are exactly these Hankel forms for x^3 - x - 1 and x^4 - x - 1,
+      and the compared signatures (7)-(10) give the Hermite counts
+      2 - 1 = 1 and 3 - 1 = 2, the real-root counts of the two
+      trinomials, reached by explicit congruence rather than through
+      Hermite's theorem. Hermite's general theorem is not formalized
+      here.
     license: "unknown"
     author_endorsement: "n/a"
   - title: "The Discriminant Matrices of an Algebraic Number Field"
@@ -161,15 +163,18 @@ sources:
     # Soc. volume s1-43, issue 1, pages 152-154.
     type: "article"
     location: "https://doi.org/10.1112/jlms/s1-43.1.152"
-    relationship: "background"
+    relationship: "independently-proves"
     note: >-
-      The number-field form of the same statement: the discriminant
-      matrix (the trace-form Gram matrix) of a number field with r_1
-      real and r_2 pairs of complex embeddings has r_1 + r_2 positive
-      and r_2 negative eigenvalues. The compared signatures (2, 1) and
-      (3, 1) are the instances (r_1, r_2) = (1, 1) and (2, 1). Cited as
-      the classical setting; the general theorem is not formalized and
-      the embedding counts appear in no compared statement.
+      The number-field form of the signature statement: the
+      discriminant matrix (the trace-form Gram matrix) of a number field
+      with r_1 real and r_2 pairs of complex embeddings has r_1 + r_2
+      positive and r_2 negative eigenvalues. INDEPENDENTLY PROVED HERE
+      AT THREE FIELDS ONLY: the compared signatures (2, 1), (3, 1) and
+      (7, 5) are the instances (r_1, r_2) = (1, 1), (2, 1) and (2, 5)
+      of Taussky's theorem, reached by explicit congruence and
+      Mathlib's Sylvester uniqueness, not through the theorem. The
+      general theorem is not formalized and the embedding counts appear
+      in no compared statement.
     license: "unknown"
     author_endorsement: "n/a"
   - title: "A Survey of Trace Forms of Algebraic Number Fields"
