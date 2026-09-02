@@ -11,8 +11,8 @@ above 1 are the plastic number and the quartic root of `x⁴ = x + 1`.
 The trace form of a number field `K` of degree `n` is the symmetric
 bilinear form `(x, y) ↦ Tr_{K/ℚ}(xy)`; in the power basis
 `1, x, …, x^(n−1)` its Gram matrix is `(Tr(x^(i+j)))`, the Hankel matrix
-of the power sums of the roots. Ten compared statements, all about these
-two fields and nothing else:
+of the power sums of the roots. Sixteen compared statements, all about
+these two fields and their compositum and nothing else:
 
 * (1)–(2) **the Gram matrices, entrywise.** `Algebra.traceMatrix` of the
   power family `1, x, …, x^(n−1)` equals the explicit integer Hankel
@@ -34,14 +34,23 @@ two fields and nothing else:
   them with the counts of positive and negative weights in any
   diagonalisation. The trace form of `K₃` has signature `(2, 1)` and the
   trace form of `K₄` has signature `(3, 1)`.
+* (11)–(16) **the compositum.** `K₃ ⊗[ℚ] K₄` is a field (16), the
+  compositum `ℚ(ρ, Q)` of degree 12, since the degrees 3 and 4 are
+  coprime; its trace form is the tensor product of the two: the trace
+  of a pure tensor is the product of the traces (11), the Gram matrix of
+  the tensor power family `xⁱ ⊗ yʲ` is the Kronecker product of the two
+  Gram matrices (12), the discriminant of that family is
+  `(−23)⁴ · (−283)³` (13), and the Sylvester signature is `(7, 5)`
+  (14)–(15).
 
-The signatures are the two instances, at these fields, of the classical
+The signatures are the three instances, at these fields, of the classical
 theorem that the trace form of a number field with `r₁` real and `r₂`
 pairs of complex embeddings has signature `(r₁ + r₂, r₂)` (Hermite 1856
 for the Hankel form of a polynomial; Taussky 1968 for the discriminant
 matrix of a number field; Conner–Perlis 1984, Chapter I); here
-`(r₁, r₂) = (1, 1)` and `(2, 1)`. The general theorem is not formalized;
-the two instances are proved directly, by explicit congruence, and the
+`(r₁, r₂) = (1, 1)`, `(2, 1)` and `(2, 5)`. The general theorem is not
+formalized; the three instances are proved directly, by explicit
+congruence (the third through the tensor of the two diagonalising bases), and the
 signature invariants are read off through Mathlib's Sylvester
 uniqueness. Every proof is kernel-checked; axioms on every compared
 statement: `propext`, `Classical.choice`, `Quot.sound`.
