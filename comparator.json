@@ -1,0 +1,21 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "TraceForms.traceMatrix_cubic",
+    "TraceForms.traceMatrix_quartic",
+    "TraceForms.discr_cubic",
+    "TraceForms.discr_quartic",
+    "TraceForms.traceForm_cubic_equiv",
+    "TraceForms.traceForm_quartic_equiv",
+    "TraceForms.sigPos_cubic",
+    "TraceForms.sigNeg_cubic",
+    "TraceForms.sigPos_quartic",
+    "TraceForms.sigNeg_quartic"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ]
+}
