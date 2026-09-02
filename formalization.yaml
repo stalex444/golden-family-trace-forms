@@ -6,118 +6,145 @@ version: "v0.4"
 # review block below).
 
 project:
-  name: "The trace forms of Q[x]/(x^3 - x - 1) and Q[x]/(x^4 - x - 1) and of their compositum: Gram matrices, discriminants -23 and -283, Sylvester signatures (2,1) and (3,1), and the tensor-product trace form of signature (7,5)"
+  name: "The trace form of a tensor product of algebras and the signature product rule, with the trace forms of Q[x]/(x^3 - x - 1), Q[x]/(x^4 - x - 1) and their compositum as instances"
   description: >-
-    Kernel-checked arithmetic of the trace forms of the two fields cut
-    out by the trinomials x^3 - x - 1 and x^4 - x - 1 — the cubic and
-    quartic members of the family x^n - x - 1, irreducible over the
-    rationals for every n >= 2 by Selmer's theorem (Mathlib), whose
-    real roots above 1 are the plastic number and the quartic root of
-    x^4 = x + 1. The trace form of a number field K of degree n is the
-    symmetric bilinear form (x, y) -> Tr(xy); in the power basis
-    1, x, ..., x^(n-1) its Gram matrix is the Hankel matrix (Tr x^(i+j))
-    of the power sums of the roots. Sixteen compared statements, all
-    about these two fields and their compositum and nothing else. (1)-(2) The Gram matrices,
-    entrywise: Algebra.traceMatrix of the power family equals the
-    explicit integer Hankel matrix — power sums 3, 0, 2, 3, 2 for the
-    cubic and 4, 0, 0, 3, 4, 0, 3 for the quartic, from Newton's
-    identities on the coefficients. (3)-(4) The discriminants of the
-    power bases, Algebra.discr of the same families: -23 and -283, both
-    prime. (5)-(6) Explicit diagonalisations: the trace form, as a
-    quadratic form, is equivalent to the weighted sum of squares with
-    weights 3, 2, -23/6 resp. 4, 4, -9/4, 283/36 — one congruence
-    among many, exhibited with its rational change of basis. (7)-(10)
-    The Sylvester signatures as basis-free invariants: Mathlib's sigPos
-    and sigNeg (the maximal dimension of a positive- resp.
-    negative-definite subspace) are 2 and 1 for the cubic trace form
-    and 3 and 1 for the quartic trace form, read off from (5)-(6)
-    through the uniqueness half of Sylvester's law of inertia
-    (QuadraticForm.sigPos_of_equiv_weightedSumSquares). (11)-(16) THE
-    COMPOSITUM: the tensor product L = K_3 ⊗_Q K_4 of the two fields is
-    their compositum Q(rho, Q) — the degrees 3 and 4 are coprime, so the
-    fields are linearly disjoint and L is a field, statement (16),
-    proved from Mathlib's coprime-degree linear-disjointness criterion —
-    and its trace form is the TENSOR PRODUCT of the two trace forms:
-    (11) the trace of a pure tensor x ⊗ y is Tr(x)·Tr(y); (12) the Gram
-    matrix of the tensor power family x^i ⊗ y^j, indexed by
-    Fin 3 × Fin 4, is the Kronecker product of the two Gram matrices;
-    (13) the discriminant of that family is (-23)^4·(-283)^3 (the
-    determinant of a Kronecker product); (14)-(15) the Sylvester
-    signature of L's trace form is (7, 5) — the tensor of the two
-    diagonalising bases is orthogonal with the twelve product weights,
-    six (+,+) pairs and one (−,−) pair positive, three (−,+) and two
-    (+,−) negative — agreeing with the classical (r_1 + r_2, r_2) for
-    the compositum's two real and five complex places (context, not
-    compared). The registered compositum entry PALOMAR-2026-09-01-000005
-    treats the same field as Q(rho·Q), through the degree-12 minimal
-    polynomial of the product; that Q(rho, Q) = Q(rho·Q) follows by
-    degree count and is context here, never compared. THE CLASSICAL
-    SETTING: the trace form of a number field with r_1 real and r_2
-    pairs of complex embeddings has signature (r_1 + r_2, r_2) — for
-    the Hankel form of a polynomial this is Hermite's 1856 theorem (the
-    signature difference counts the distinct real roots), and for the
-    discriminant matrix of a number field it is Taussky's 1968 note;
-    Conner and Perlis's 1984 survey is the standard reference. WHY
-    THESE TWO FIELDS: the cubic field is the signature-[1, 1] cubic
-    field of smallest absolute discriminant (LMFDB, sorted by |disc|:
-    3.1.23.1 first, then 3.1.31.1); its Galois closure is the Artin
-    field of the weight-one newform 23.1.b.a = eta(z) eta(23z), the
-    classical Hecke example with Artin image S_3, whose analytic
-    conductor the LMFDB records as minimal among all classical newforms
-    and whose Stark unit is the root of x^3 - x - 1 itself; and its
-    integral trace form — which the compared Gram matrix (1) is, the
-    power basis being an integral basis — is the object of
-    Mantilla-Soler's study of integral trace forms of cubic fields
-    (Algebra & Number Theory 2010; MSC 11E12, 11R29, 11R16 — the
-    classes of this entry), which asks how much of a cubic field its
-    integral trace form determines. The quartic field is the degree-4
-    member of the same trinomial family, registered as the degree-4
-    Mahler-measure minimizer (PALOMAR-2026-08-31-000004), with the same
-    profile: prime discriminant, monogenic. Here
-    (r_1, r_2) = (1, 1) and (2, 1), so the classical theorem predicts
-    exactly (2, 1) and (3, 1), and the Hermite count 2 - 1 = 1 and
-    3 - 1 = 2 matches the real-root counts of the two trinomials. The
-    general theorem is NOT formalized: the two instances are proved
-    directly by explicit congruence and the invariants are read off
-    through Mathlib's Sylvester uniqueness; the embedding counts r_1,
-    r_2 appear in no compared statement. The field discriminants: the
-    LMFDB records 4.2.283.1 (defining polynomial x^4 - x - 1, signature
-    [2, 1], discriminant -283, monogenic, index 1) and 3.1.23.1
-    (reduced defining polynomial x^3 - x^2 + 1, the field generated by
-    -1/rho, signature [1, 1], discriminant -23, monogenic, index 1)
-    list -283 and -23 as the field discriminants; that the power
-    bases are integral bases, so that the compared power-basis
-    discriminants ARE the field discriminants, is cited from those
-    records and not formalized. PRIOR ART, as of the 2026-09-02 sweep:
-    Mathlib at the pin contains the trace-form and discriminant
-    infrastructure (Algebra.traceForm, Algebra.traceMatrix,
-    Algebra.discr with discr_def) and the signature invariants with
-    Sylvester uniqueness (sigPos, sigNeg,
-    sigPos_of_equiv_weightedSumSquares), but no statement of the
-    (r_1 + r_2, r_2) theorem and no trace-form or discriminant
-    computation for either of these fields. The nearest prior work is
-    the Lean 4 certification framework of Baanen, Chavarri Villarello
-    and Dahmen (CPP 2025) and its 2026 sequel (Chavarri Villarello and
-    Dahmen): they certify rings of integers, FIELD discriminants (as
-    the determinant of the trace matrix of a certified integral basis)
-    and, in the sequel, the signature (r_1, r_2) by real-root
-    counting, for LMFDB entries at large; neither treats the trace
-    form's Sylvester signature, and their published example sets (seven
-    non-monogenic cubic fields unramified outside 2, 3, 5 in the
-    first; the v1 example directory of the second) contain neither of
-    the two fields here (checked 2026-09-02). Relative to that work,
-    the compared discriminants (3)-(4) are the power-basis
-    discriminants derived from the explicit Gram matrices — a weaker
-    notion than the certified field discriminant, which coincides
-    with it here because both fields are monogenic (LMFDB, cited) —
-    and the Sylvester signatures (7)-(10) have no counterpart there.
-    The entry is not aware of a formalization of a number field's
-    trace-form Sylvester signature in any surveyed prover ecosystem.
-    The proof modules descend from the
-    author's public pdt-lean development (pinned below), where none of
-    these statements was ever a compared statement. Axioms on every
-    compared theorem: propext, Classical.choice, Quot.sound, audited
-    in-build.
+    GENERAL THEOREMS FIRST. For finite free algebras A, B over a
+    commutative ring R, the trace form of the tensor product A ⊗_R B is
+    the tensor product of the trace forms, and over a linearly ordered
+    field the Sylvester signature of a tensor product of quadratic forms
+    obeys a product rule. Seven compared general statements: (1) the
+    trace of a pure tensor is the product of the traces,
+    Tr_{A⊗B}(a ⊗ b) = Tr_A(a)·Tr_B(b); (2) the trace form on pure
+    tensors is the product of the trace forms; (3) the Gram matrix of a
+    tensor basis bA ⊗ bB (Mathlib's Basis.tensorProduct) is the
+    Kronecker product of the two Gram matrices; (4) the discriminant
+    product formula WITH SIGN, disc(bA ⊗ bB) = disc(bA)^|kappa| ·
+    disc(bB)^|iota| for bases indexed by finite types iota, kappa; (5)
+    when 2 is invertible in R, the trace quadratic form of A ⊗ B is the
+    tensor product (Mathlib's QuadraticForm.tmul) of the trace quadratic
+    forms; (6)-(7) THE SIGNATURE PRODUCT RULE: over a linearly ordered
+    field with 2 invertible, for quadratic forms Q1, Q2 on
+    finite-dimensional spaces, sigPos(Q1 ⊗ Q2) = p1 p2 + n1 n2 and
+    sigNeg(Q1 ⊗ Q2) = p1 n2 + n1 p2, with sigPos/sigNeg Mathlib's
+    basis-free invariants (maximal dimension of a positive- resp.
+    negative-definite subspace). (6)-(7) are the (p, n)-refinement of
+    the multiplicativity of the signature homomorphism on the Witt ring
+    of an ordered field (Lam 2005, Chapter VIII), stated for arbitrary
+    (possibly degenerate) forms; proved by orthogonal bases and the
+    uniqueness half of Sylvester's law. None of (1)-(7) was in Mathlib
+    at the pin; Mathlib's nearest results are the trace of a tensor
+    product of endomorphisms (LinearMap.trace_tensorProduct'), the
+    determinant of a Kronecker product, the tensor product of quadratic
+    forms and its polar form, orthogonal bases, and sigPos/sigNeg with
+    Sylvester uniqueness — the infrastructure from which (1)-(7) are
+    built. PRIOR ART on (4): Mathlib at the pin has
+    NumberField.natAbs_discr_eq_natAbs_discr_pow_mul_natAbs_discr_pow —
+    for two linearly disjoint number fields with coprime different
+    ideals the ABSOLUTE VALUE of the discriminant of their compositum is
+    |d1|^[K2:Q]·|d2|^[K1:Q] (via the different; the classical statement
+    is in Khanduja 2019). Statement (4) is the elementary basis-level
+    version: any finite free algebras over any commutative ring, the
+    exact signed discriminant of the tensor basis, with no number-field,
+    integrality or coprimality hypothesis; it neither implies nor is
+    implied by the Mathlib theorem, and is cited beside it. THE
+    INSTANCES (8)-(23), at the two fields cut out by the trinomials
+    x^3 - x - 1 and x^4 - x - 1 — the cubic and quartic members of the
+    family x^n - x - 1, irreducible over the rationals for every n >= 2
+    by Selmer's theorem (Mathlib), whose real roots above 1 are the
+    plastic number and the quartic root of x^4 = x + 1 — and their
+    compositum. The trace form of a number field K of degree n is
+    (x, y) -> Tr(xy); in the power basis 1, x, ..., x^(n-1) its Gram
+    matrix is the Hankel matrix (Tr x^(i+j)) of the power sums of the
+    roots. (8)-(9) The Gram matrices, entrywise: Algebra.traceMatrix of
+    the power family equals the explicit integer Hankel matrix — power
+    sums 3, 0, 2, 3, 2 for the cubic and 4, 0, 0, 3, 4, 0, 3 for the
+    quartic, from Newton's identities on the coefficients. (10)-(11)
+    The discriminants of the power bases, Algebra.discr of the same
+    families: -23 and -283, both prime. (12)-(13) Explicit
+    diagonalisations: the trace form, as a quadratic form, is
+    equivalent to the weighted sum of squares with weights 3, 2, -23/6
+    resp. 4, 4, -9/4, 283/36 — one congruence among many, exhibited with
+    its rational change of basis. (14)-(17) The Sylvester signatures as
+    basis-free invariants: sigPos and sigNeg are 2 and 1 for the cubic
+    trace form and 3 and 1 for the quartic, read off from (12)-(13)
+    through Sylvester uniqueness. (18)-(23) THE COMPOSITUM: the tensor
+    product L = K_3 ⊗_Q K_4 is their compositum Q(rho, Q) — the degrees
+    3 and 4 are coprime, so the fields are linearly disjoint and L is a
+    field, statement (23), from Mathlib's coprime-degree
+    linear-disjointness criterion — and (18)-(22) are the general
+    theorems at this pair: Tr(x ⊗ y) = Tr(x)·Tr(y); the Gram matrix of
+    the tensor power family x^i ⊗ y^j (Fin 3 × Fin 4) is the Kronecker
+    product of the two Gram matrices; the discriminant of that family
+    is (-23)^4·(-283)^3 by (4); the Sylvester signature is (7, 5) by
+    (6)-(7) applied to (2, 1) and (3, 1) — agreeing with the classical
+    (r_1 + r_2, r_2) for the compositum's two real and five complex
+    places (context, not compared). The registered compositum entry
+    PALOMAR-2026-09-01-000005 treats the same field as Q(rho·Q), through
+    the degree-12 minimal polynomial of the product; that
+    Q(rho, Q) = Q(rho·Q) follows by degree count and is context here,
+    never compared. THE CLASSICAL SETTING of the instances: the trace
+    form of a number field with r_1 real and r_2 pairs of complex
+    embeddings has signature (r_1 + r_2, r_2) — for the Hankel form of a
+    polynomial this is Hermite's 1856 theorem (the signature difference
+    counts the distinct real roots), and for the discriminant matrix of
+    a number field it is Taussky's 1968 note; Conner and Perlis's 1984
+    survey is the standard reference. Here (r_1, r_2) = (1, 1), (2, 1)
+    and (2, 5), so the classical theorem predicts exactly (2, 1),
+    (3, 1) and (7, 5), and the Hermite counts 2 - 1 = 1 and 3 - 1 = 2
+    match the real-root counts of the two trinomials. That general
+    theorem is NOT formalized: the two-field instances are proved
+    directly by explicit congruence, the compositum instance by the
+    general theorems (1)-(7); the embedding counts r_1, r_2 appear in no
+    compared statement. WHY THESE FIELDS, for the instances: the cubic
+    field is the signature-[1, 1] cubic field of smallest absolute
+    discriminant (LMFDB, sorted by |disc|: 3.1.23.1 first, then
+    3.1.31.1); its Galois closure is the Artin field of the weight-one
+    newform 23.1.b.a = eta(z) eta(23z), the classical Hecke example with
+    Artin image S_3, whose analytic conductor the LMFDB records as
+    minimal among all classical newforms and whose Stark unit is the
+    root of x^3 - x - 1 itself; its integral trace form — which the
+    compared Gram matrix (8) is, the power basis being an integral
+    basis — is the object of Mantilla-Soler's study of integral trace
+    forms of cubic fields (Algebra & Number Theory 2010). The quartic
+    field is the degree-4 member of the same trinomial family,
+    registered as the degree-4 Mahler-measure minimizer
+    (PALOMAR-2026-08-31-000004), with the same profile: prime
+    discriminant, monogenic. The field discriminants: the LMFDB records
+    4.2.283.1 (defining polynomial x^4 - x - 1, signature [2, 1],
+    discriminant -283, monogenic, index 1) and 3.1.23.1 (reduced
+    defining polynomial x^3 - x^2 + 1, the field generated by -1/rho,
+    signature [1, 1], discriminant -23, monogenic, index 1) list -283
+    and -23 as the field discriminants; that the power bases are
+    integral bases, so that the compared power-basis discriminants ARE
+    the field discriminants, is cited from those records and not
+    formalized; likewise the tensor power family is an integral basis
+    of the compositum because the two discriminants are coprime (the
+    standard integral-basis theorem for linearly disjoint fields;
+    context only). PRIOR ART on the instances, as of the 2026-09-02
+    sweep: Mathlib contains no trace-form or discriminant computation
+    for either field. The nearest prior work is the Lean 4 certification
+    framework of Baanen, Chavarri Villarello and Dahmen (CPP 2025) and
+    its 2026 sequel (Chavarri Villarello and Dahmen): they certify rings
+    of integers, FIELD discriminants (as the determinant of the trace
+    matrix of a certified integral basis) and, in the sequel, the
+    signature (r_1, r_2) by real-root counting, for LMFDB entries at
+    large; neither treats the trace form's Sylvester signature, and
+    their published example sets (seven non-monogenic cubic fields
+    unramified outside 2, 3, 5 in the first; the v1 example directory of
+    the second) contain neither of the two fields here (checked
+    2026-09-02). Relative to that work, the compared discriminants
+    (10)-(11) are the power-basis discriminants derived from the
+    explicit Gram matrices — a weaker notion than the certified field
+    discriminant, which coincides with it here because both fields are
+    monogenic (LMFDB, cited) — and the Sylvester signatures have no
+    counterpart there. The entry is not aware of a formalization, in
+    any surveyed prover ecosystem, of the trace form of a tensor
+    product of algebras, of the signature product rule, or of a number
+    field's trace-form Sylvester signature. The proof modules descend
+    from the author's public pdt-lean development (pinned below), where
+    none of these statements was ever a compared statement. Axioms on
+    every compared theorem: propext, Classical.choice, Quot.sound,
+    audited in-build.
   authors:
     - "Stephanie Alexander"
   license: "MIT"
@@ -126,7 +153,7 @@ project:
 
 classification:
   arxiv: ["math.NT"]
-  msc2020: ["11R04", "11R16", "11E12", "11R29"]
+  msc2020: ["11E04", "11E12", "15A63", "11R04", "11R16", "11R29"]
 
 sources:
   - title: "Extrait d'une lettre de Mr. Ch. Hermite de Paris à Mr. Borchardt de Berlin sur le nombre des racines d'une équation algébrique comprises entre des limites données"
@@ -145,9 +172,9 @@ sources:
       p_k the power sums of the roots, has rank equal to the number of
       distinct roots and signature (positive minus negative index)
       equal to the number of distinct real roots. INDEPENDENTLY PROVED
-      HERE AT TWO POLYNOMIALS ONLY: the compared Gram matrices (1)-(2)
+      HERE AT TWO POLYNOMIALS ONLY: the compared Gram matrices (8)-(9)
       are exactly these Hankel forms for x^3 - x - 1 and x^4 - x - 1,
-      and the compared signatures (7)-(10) give the Hermite counts
+      and the compared signatures (14)-(17) give the Hermite counts
       2 - 1 = 1 and 3 - 1 = 2, the real-root counts of the two
       trinomials, reached by explicit congruence rather than through
       Hermite's theorem. Hermite's general theorem is not formalized
@@ -211,8 +238,8 @@ sources:
       invariants of the form. Consumed here in Mathlib's form — sigPos
       and sigNeg with QuadraticForm.sigPos_of_equiv_weightedSumSquares
       and sigNeg_of_equiv_weightedSumSquares (the uniqueness half) —
-      to read the compared signatures (7)-(10) off the exhibited
-      diagonalisations (5)-(6). Not re-proved here.
+      to read the compared signatures (14)-(17) off the exhibited
+      diagonalisations (12)-(13). Not re-proved here.
     license: "unknown"
     author_endorsement: "n/a"
   - title: "Integral trace forms associated to cubic extensions"
@@ -253,6 +280,50 @@ sources:
       closure of 3.1.23.1, the field of x^3 - x - 1. Cited to show why
       this field is a natural object; nothing about modular forms is
       formalized or compared.
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "Introduction to Quadratic Forms over Fields"
+    authors:
+      - "T. Y. Lam"
+    id: "Graduate Studies in Mathematics 67, American Mathematical Society, Providence, RI, 2005; ISBN 0-8218-1095-2"
+    # Bibliographic data verified 2026-09-02 (this entry) against the
+    # AMS listing and the Bull. LMS review record; Chapter VIII is
+    # "Formally real fields, real-closed fields, and Pythagorean fields".
+    type: "book"
+    location: "https://bookstore.ams.org/gsm-67"
+    relationship: "background"
+    note: >-
+      The classical setting of the signature product rule (6)-(7):
+      over an ordered field the signature is a ring homomorphism from
+      the Witt ring to the integers, so it is multiplicative on tensor
+      products (Chapter VIII, formally real fields and signatures).
+      Statements (6)-(7) are the (p, n)-refinement of that
+      multiplicativity, sigPos and sigNeg separately, for arbitrary and
+      possibly degenerate forms; proved here directly by orthogonal
+      bases, not through the Witt ring, which is not formalized.
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "The discriminant of compositum of algebraic number fields"
+    authors:
+      - "Sudesh K. Khanduja"
+    id: "International Journal of Number Theory 15 (2019), no. 2, 353-360"
+    # Crossref-verified 2026-09-02 (this entry): DOI
+    # 10.1142/S1793042119500167 — author Khanduja, Int. J. Number
+    # Theory volume 15, issue 02, pages 353-360, 2019.
+    type: "article"
+    location: "https://doi.org/10.1142/S1793042119500167"
+    relationship: "background"
+    note: >-
+      The classical field-level discriminant formula for a compositum
+      of number fields with coprime discriminants,
+      d(K1 K2) = d(K1)^[K2:Q] · d(K2)^[K1:Q], and its refinements. The
+      compared statement (4) is the elementary basis-level product
+      formula for a tensor basis of arbitrary finite free algebras,
+      with sign; the field-level identification for the compositum of
+      the two golden-family fields (that the tensor power family is an
+      integral basis) is context, not formalized. Mathlib's absolute-
+      value version for linearly disjoint number fields with coprime
+      differents is disclosed under related formalizations.
     license: "unknown"
     author_endorsement: "n/a"
   - title: "Certifying Rings of Integers in Number Fields"
@@ -305,7 +376,7 @@ sources:
       discriminant certification to higher degrees. "Signature" there
       is the embedding count, not the Sylvester signature of the trace
       form; the paper mentions neither the trace form's inertia
-      indices nor Sylvester's law. The compared statements (7)-(10)
+      indices nor Sylvester's law. The compared statements (14)-(17)
       are the trace-form Sylvester signatures, whose relation to
       (r_1, r_2) is the classical (r_1 + r_2, r_2) theorem, cited and
       not formalized here.
@@ -379,7 +450,7 @@ sources:
     author_endorsement: "n/a"
 
 related_formalizations:
-  - id: "https://github.com/leanprover-community/mathlib4 (Mathlib/RingTheory/Trace/Defs.lean, Mathlib/RingTheory/Trace/Basic.lean, Mathlib/RingTheory/Discriminant.lean, Mathlib/LinearAlgebra/QuadraticForm/Signature.lean, Mathlib/RingTheory/AdjoinRoot.lean, Mathlib/RingTheory/Polynomial/Selmer.lean, Mathlib/LinearAlgebra/Trace.lean, Mathlib/LinearAlgebra/Matrix/Kronecker.lean, Mathlib/FieldTheory/LinearDisjoint.lean)"
+  - id: "https://github.com/leanprover-community/mathlib4 (Mathlib/RingTheory/Trace/Defs.lean, Mathlib/RingTheory/Trace/Basic.lean, Mathlib/RingTheory/Discriminant.lean, Mathlib/LinearAlgebra/QuadraticForm/Signature.lean, Mathlib/RingTheory/AdjoinRoot.lean, Mathlib/RingTheory/Polynomial/Selmer.lean, Mathlib/LinearAlgebra/Trace.lean, Mathlib/LinearAlgebra/Matrix/Kronecker.lean, Mathlib/FieldTheory/LinearDisjoint.lean, Mathlib/LinearAlgebra/QuadraticForm/TensorProduct.lean, Mathlib/NumberTheory/NumberField/Discriminant/Different.lean)"
     relationship: "builds-on"
     note: >-
       Honest accounting of what is consumed, at the pin fabf563a: the
@@ -406,10 +477,23 @@ related_formalizations:
       representation (QuadraticMap.basisRepr_eq_of_iIsOrtho), and the
       coprime-degree linear-disjointness criterion
       (IntermediateField.LinearDisjoint.of_finrank_coprime with
-      LinearDisjoint.isField_of_forall). Mathlib contains no statement
+      LinearDisjoint.isField_of_forall). Also consumed for the general theorems: the tensor
+      product of quadratic forms QuadraticForm.tmul / tensorDistrib with
+      tensorDistrib_tmul and associated_tmul, and orthogonal bases
+      (LinearMap.BilinForm.exists_orthogonal_basis). PRIOR ART DISCLOSED:
+      Mathlib/NumberTheory/NumberField/Discriminant/Different.lean holds
+      NumberField.natAbs_discr_eq_natAbs_discr_pow_mul_natAbs_discr_pow
+      — for linearly disjoint number fields K1, K2 with coprime different
+      ideals, |disc(K1 K2)| = |disc K1|^[K2:Q] · |disc K2|^[K1:Q] — the
+      field-level, absolute-value form of the discriminant product
+      formula, proved through the different. Statement (4) here is the
+      basis-level signed formula for arbitrary finite free algebras over
+      any commutative ring; the two are different statements and
+      neither is derived from the other. Mathlib contains no statement
       that the trace form of a tensor product of algebras is the tensor
-      product of the trace forms (proved here for pure tensors from
-      trace_tensorProduct'), no statement of the (r_1 + r_2, r_2) signature
+      product of the trace forms (statements (1)-(3), (5)), no signature
+      product rule for tensor products of quadratic forms ((6)-(7)),
+      no statement of the (r_1 + r_2, r_2) signature
       theorem for number fields and no trace-form or discriminant
       computation for either field here (checked at the pin,
       2026-09-02); the ten instance theorems compared here are this
@@ -425,15 +509,15 @@ related_formalizations:
       here; its published examples contain neither of this entry's
       fields (checked 2026-09-02); and its notion of signature is the
       embedding count, not the trace form's inertia indices compared
-      here. Cited so that the discriminant statements (3)-(4) are
+      here. Cited so that the discriminant statements (10)-(11) are
       placed honestly: that framework certifies the stronger
       ring-of-integers discriminant, this entry derives the
       power-basis discriminant from the explicit Gram matrix.
-  - id: "https://github.com/stalex444/pdt-lean (parent development; pinned reference revision: commit 52110e34531657b467392ee522b75f8cb7da3ee9)"
+  - id: "https://github.com/stalex444/pdt-lean (parent development; pinned reference revision: commit add583f3a7fc465a7fa78e2a236fe728ea9ec850)"
     relationship: "other"
     note: >-
       The broader public project this entry belongs to, and the
-      provenance of the proof modules. The six proof modules of this
+      provenance of the proof modules. The seven proof modules of this
       repository — PdtSignature and PdtSignatureRho (the explicit
       Gram matrices and their rational congruences to diagonal form),
       PdtIrreducible (irreducibility of the two trinomials over Q, by
@@ -443,15 +527,16 @@ related_formalizations:
       PdtTraceSignature (the isometries and the sigPos/sigNeg
       invariants) and PdtTraceCompositum (the tensor-product trace form,
       its Kronecker Gram matrix, discriminant and signature, and the
-      field property of the compositum) — are copied here byte-for-byte
-      from the pinned revision. Chronology: PdtSignature,
-      PdtSignatureRho and PdtIrreducible predate this entry in the
-      parent (June 2026); PdtTraceLink, PdtTraceSignature and
-      PdtTraceCompositum were written for this entry on 2026-09-02,
-      developed and committed in the parent at the pinned revision,
-      then copied here. This repository
+      field property of the compositum) and PdtTraceTensor (the general
+      theorems (1)-(7) and the compositum instance as their corollary)
+      — are copied here byte-for-byte from the pinned revision.
+      Chronology: PdtSignature, PdtSignatureRho and PdtIrreducible
+      predate this entry in the parent (June 2026); PdtTraceLink,
+      PdtTraceSignature, PdtTraceCompositum and PdtTraceTensor were
+      written for this entry on 2026-09-02, developed and committed in
+      the parent at the pinned revision, then copied here. This repository
       is a complete, self-contained proof development for the compared
-      statements, not a wrapper: the six modules, the Challenge and
+      statements, not a wrapper: the seven modules, the Challenge and
       the Solution build here with the pinned toolchain and no import
       from the parent. The parent's registered entry
       PALOMAR-2026-08-19-000007 compared none of the statements
@@ -464,7 +549,7 @@ related_formalizations:
       minimal polynomial, conjugate census, and unit-ness of the product
       of the two roots). Nothing about trace forms, discriminants, or
       signatures is registered there, and nothing from it is
-      re-compared here. The compositum statements (11)-(16) of this
+      re-compared here. The compositum statements (18)-(23) of this
       entry are about the tensor product K_3 ⊗_Q K_4, proved a field in
       (16); its identification with the sibling's Q(rho·Q) is a degree
       count (both have degree 12 and one contains the other) and is
@@ -481,38 +566,50 @@ related_formalizations:
 
 status:
   scope: >-
-    Formalized, sixteen compared theorems, no hypotheses (every
-    statement is closed). (1) traceMatrix_cubic and (2) traceMatrix_quartic —
-    Algebra.traceMatrix of the power family 1, x, ..., x^(n-1) of
-    Q[x]/(x^n - x - 1) equals the explicit integer Hankel matrix of the
-    power sums, for n = 3 and n = 4. (3) discr_cubic and (4)
-    discr_quartic — Algebra.discr of the same families is -23 and
-    -283. (5) traceForm_cubic_equiv and (6) traceForm_quartic_equiv —
-    the trace form as a quadratic form is equivalent to the weighted
-    sum of squares with weights 3, 2, -23/6 resp. 4, 4, -9/4, 283/36.
-    (7)-(8) sigPos_cubic = 2, sigNeg_cubic = 1; (9)-(10)
-    sigPos_quartic = 3, sigNeg_quartic = 1. (11) trace_tmul_compositum
-    — in K_3 ⊗_Q K_4, Tr(x ⊗ y) = Tr(x)·Tr(y). (12)
+    Formalized, twenty-three compared theorems, seven general and sixteen
+    instances. GENERAL, with hypotheses exactly as stated in the Lean:
+    (1) trace_tmul and (2) traceForm_tmul — R a commutative ring, A and B
+    commutative R-algebras that are free and finite as R-modules; the
+    trace of a ⊗ b is Tr(a)·Tr(b) and the trace form on pure tensors is
+    the product of the trace forms. (3) traceMatrix_tensorProduct — same
+    hypotheses, bases indexed by arbitrary types: the trace matrix of
+    bA.tensorProduct bB is the Kronecker product. (4)
+    discr_tensorProduct — index types finite with decidable equality:
+    Algebra.discr of the tensor basis is disc(bA)^|kappa|·disc(bB)^|iota|,
+    with sign. (5) traceForm_toQuadraticMap_tensor — additionally 2
+    invertible in R: the trace quadratic form of A ⊗ B is
+    QuadraticForm.tmul of the two trace quadratic forms. (6)-(7)
+    sigPos_tmul, sigNeg_tmul — K a field with a linear order making it a
+    strictly ordered ring (the class under which Mathlib's sigPos is
+    defined), 2 invertible in K, V and W finite-dimensional: the
+    signature product rule, both parts. Hypotheses honesty: (6)-(7) need
+    finite-dimensionality only for the diagonalisation; no
+    nondegeneracy is assumed (zero weights contribute to neither
+    count). INSTANCES: (8) traceMatrix_cubic and (9) traceMatrix_quartic
+    — the trace matrix of the power family i ↦ x^i is the explicit
+    Hankel matrix; (10) discr_cubic = -23, (11) discr_quartic = -283
+    (Algebra.discr of the same families); (12)-(13) explicit
+    diagonalisations, QuadraticMap.Equivalent to the weighted sums of
+    squares with weights 3, 2, -23/6 and 4, 4, -9/4, 283/36; (14)-(17)
+    sigPos/sigNeg of the two trace forms: 2, 1, 3, 1; (18)
+    trace_tmul_compositum — in K_3 ⊗_Q K_4, Tr(x ⊗ y) = Tr x·Tr y; (19)
     traceMatrix_compositum — the trace matrix of the tensor power family
-    (i, j) -> x^i ⊗ y^j is the Kronecker product of the two Gram
-    matrices. (13) discr_compositum — Algebra.discr of that family is
-    (-23)^4·(-283)^3. (14)-(15) sigPos_compositum = 7,
-    sigNeg_compositum = 5. (16) isField_compositum — K_3 ⊗_Q K_4 is a
-    field. NOT formalized: the classical (r_1 + r_2, r_2) theorem
-    (Hermite 1856, Taussky 1968) — the three instances are proved
-    directly; the embedding counts r_1, r_2 and the real-root counts of
-    the trinomials (context, from the registered family entry and the
-    LMFDB records); the identification of the power-basis
-    discriminants with the field discriminants (the power bases are
-    integral bases — LMFDB, cited), and likewise for the compositum
-    (the tensor power family is an integral basis because the two
-    discriminants are coprime — the standard integral-basis theorem
-    for linearly disjoint fields, context only); the identification
-    Q(rho, Q) = Q(rho·Q) with the registered compositum entry's field
-    (degree count, context). Irreducibility of the two trinomials
-    (Selmer, in Mathlib; re-proved by reduction modulo 2 in the
-    proof module PdtIrreducible) is consumed only by (16), through the
-    finrank computations 3 and 4, and by no other compared statement.
+    (i, j) ↦ x^i ⊗ y^j is the Kronecker product of the two Gram
+    matrices; (20) discr_compositum = (-23)^4·(-283)^3; (21)-(22)
+    sigPos_compositum = 7, sigNeg_compositum = 5; (23) isField_compositum
+    — K_3 ⊗_Q K_4 is a field. In the Solution, (20)-(22) are derived from
+    the general theorems (4), (6)-(7) and the factor data. NOT
+    formalized: the classical (r_1 + r_2, r_2) theorem (Hermite 1856,
+    Taussky 1968); the embedding counts and real-root counts (context);
+    the identification of power-basis discriminants with field
+    discriminants (LMFDB, cited) and of the tensor power family with an
+    integral basis of the compositum (standard, context); the
+    identification Q(rho, Q) = Q(rho·Q) with the registered compositum
+    entry's field (degree count, context); Mathlib's field-level
+    absolute-value compositum discriminant theorem is disclosed as prior
+    art and not used. Irreducibility of the two trinomials (Selmer, in
+    Mathlib; re-proved modulo 2 in PdtIrreducible) is consumed only by
+    (23), through the finrank computations 3 and 4.
   sorry_count: 0
   sorry_in_definitions: 0
   axioms: ["propext", "Classical.choice", "Quot.sound"]
@@ -523,9 +620,9 @@ status:
   # theorems and lemmas of PdtTraceCompositum as well. The
   # Challenge module carries the sixteen
   # statements sorry-proved as the comparison surface; Solution proves
-  # all of them by transfer from the six proof modules. sorry_count is
-  # over the proof development (the six modules and Solution); the
-  # sixteen Challenge placeholders are the comparison surface by
+  # all of them by transfer from the seven proof modules. sorry_count is
+  # over the proof development (the seven modules and Solution); the
+  # twenty-three Challenge placeholders are the comparison surface by
   # construction and are the only `sorry` in the repository.
 
 automation:
@@ -561,7 +658,7 @@ automation:
         spend_usd: "subscription-based"
         hardware: "local machine"
       prompting_notes: >-
-        Statements fixed first (the sixteen compared forms — ten, then six
+        Statements fixed first (the twenty-three compared forms — ten, then six
         for the compositum — in Mathlib
         vocabulary only); proofs iterated against the compiler module
         by module. The signature module's route: the congruence matrix
@@ -581,6 +678,26 @@ automation:
         over a generic base field and specialised (over the concrete
         rationals a competing algebra instance blocks the direct
         application).
+        PdtTraceTensor (the seven general theorems and the compositum
+        instance as their corollary) was built by a Fable-class agent in
+        four distinct builds of fifteen budgeted, about one hour: the
+        general trace identities by the same route as the compositum
+        module with the specific bases replaced by variables; the
+        signature product rule by orthogonal bases
+        (LinearMap.BilinForm.exists_orthogonal_basis), the orthogonality
+        of a tensor of orthogonal families, the basis representation of
+        a form in an orthogonal basis, and a counting lemma for the
+        signs of products of weights (Set.ncard of a disjoint union of
+        two product sets); the isometry-of-tensors step anticipated in
+        the brief was not needed. The compositum instance is then
+        derived from the general theorems, with the parent's field
+        instances on the factors switched off file-locally (they make a
+        second, syntactically different algebra instance appear).
+        This version (v2) followed a registry review of the sixteen-
+        statement v1, which found the selection to be fixed low-degree
+        computations and instances of classical results; the seven
+        general theorems are the answer, and the instances are kept as
+        the worked example.
     - method: "manual"
       models: []
       framework: "n/a"
@@ -610,14 +727,14 @@ fidelity:
     Fin 4 — no custom definition appears in any compared statement;
     (b) Algebra.traceMatrix and Algebra.discr are applied to those
     families (Mathlib defines both for an arbitrary finite family,
-    with discr_def : discr = det of the trace matrix), so (3)-(4) are
+    with discr_def : discr = det of the trace matrix), so (10)-(11) are
     the discriminants OF THE POWER BASES; that these equal the field
     discriminants is cited from the LMFDB records (index 1) and not
     formalized; (c) the signature is stated through Mathlib's
-    basis-free sigPos and sigNeg, so (7)-(10) are invariants of the
+    basis-free sigPos and sigNeg, so (14)-(17) are invariants of the
     quadratic form (Algebra.traceForm).toQuadraticMap on the field,
     independent of any basis or diagonalisation; the explicit weights
-    of (5)-(6) are ONE diagonalisation, exhibited for concreteness, and
+    of (12)-(13) are ONE diagonalisation, exhibited for concreteness, and
     the entry's prose never treats the weights themselves as
     invariants; (d) the classical (r_1 + r_2, r_2) theorem is neither
     stated nor used: the signatures are proved directly, and the
@@ -632,188 +749,231 @@ fidelity:
     such; (g) the proof modules keep the parent development's file
     names (Pdt-prefixed) and namespace PDT; the compared surface lives
     in the namespace TraceForms and mentions neither; (h) the
-    compositum statements (11)-(16) are about the tensor product
+    compositum statements (18)-(23) are about the tensor product
     K_3 ⊗_Q K_4 as a Q-algebra, with the tensor power family
     (i, j) -> x^i ⊗ y^j entering as a family indexed by Fin 3 × Fin 4;
-    (16) proves that algebra is a field, so "the compositum" in the
+    (23) proves that algebra is a field, so "the compositum" in the
     prose is the tensor product itself, and its identification with
     the registered entry's Q(rho·Q) is context; (i) the compositum
     signature is again stated through sigPos and sigNeg, and the
     prose's "tensor rule (2·3 + 1·1, 2·1 + 1·3)" describes the proof's
-    weight count, not a compared statement; (j) (13) is the
+    weight count, not a compared statement; (j) (20) is the
     discriminant of the tensor power family; its equality with the
-    field discriminant of the compositum is context, not formalized.
+    field discriminant of the compositum is context, not formalized;
+    (k) the general statements (1)-(7) carry exactly the hypotheses
+    written in the Lean — free and finite modules for the algebras,
+    finite index types with decidable equality for the discriminant,
+    2 invertible for the quadratic-form statements, a linearly ordered
+    field that is a strictly ordered ring and finite-dimensional spaces
+    for the signature rule — and the prose never drops one; (l) the
+    sign counts in (6)-(7) are Mathlib's sigPos/sigNeg, so the product
+    rule is stated for possibly degenerate forms and does not assume
+    nondegeneracy; (m) 'compositum' in the prose means the tensor
+    product K_3 ⊗_Q K_4, proved a field in (23); (n) the numbering of
+    the compared statements in every surface is (1)-(7) general,
+    (8)-(17) the two fields, (18)-(23) the compositum.
 
 review:
   status: "self-assessed"
-  reviewers:
-    - "Stephanie Alexander"
+  reviewers: []
   notes: >-
-    Statements audited by the author against the sources, the LMFDB
-    records, and the sibling entries' registered surfaces; the kernel
-    and the axiom audit are the acceptance criteria. In-house checks
-    applied 2026-09-02 (AI-assisted: Anthropic Claude, in Claude Code,
-    under the author's direction): the canon lookup that located the
-    parent development's pre-existing trace-form and discriminant
-    modules; verification of every bibliographic record against
-    Crossref and of both LMFDB records directly; a Mathlib prior-art
-    sweep at the pin for the signature theorem and for computations at
-    these fields (none found) together with a literature sweep that
-    located the Baanen-Chavarri Villarello-Dahmen certification
-    framework and its 2026 sequel, both disclosed in the sources with
-    their example sets checked; the mechanical surface gates (every
-    compared name present in both Challenge and Solution and in the
-    comparator; sorry count in Challenge equal to the compared count and
-    zero elsewhere; axiom audit over every compared declaration;
-    provenance pin present; the fidelity list checked against the
-    statements); and an adversarial mock-referee audit of the
-    ten-statement comparison surface (mathematical fidelity, kernel
-    integrity, metadata and citations, repository prose) — four
-    blocking findings, all resolved: a declaration count corrected,
-    every named result given a source entry, one provenance chronology
-    stated in both files, and the "why these two fields" account
-    added. The six compositum statements were added after that audit
-    and were checked by the mechanical gates, the kernel build and the
-    axiom audit, not by a second mock-referee pass; the README's review
-    note records the same.
-
+    Self-assessed by the author. This is version 2 of the entry. Version
+    1 (sixteen statements: the two fields and their compositum, no
+    general theorem) was reviewed by the registry on 2026-09-02 and
+    blocked on research interest — "fixed low-degree computations and
+    direct instances or applications of classical general results" —
+    and on a Challenge scope docstring that still described an earlier
+    ten-statement surface. Version 2 answers the first with the seven
+    general theorems (1)-(7), new kernel content rather than new prose,
+    and the second by rewriting the Challenge's opening account before
+    anything else. In-house checks applied before this submission: the
+    kernel build of every module and of the comparison surface; the
+    axiom audit of all twenty-three compared theorems and of every
+    theorem of the proof modules; the mechanical surface gates (names
+    declared in both Lean files, sorry count equal to the compared
+    count in Challenge and zero elsewhere, the Mathlib and pdt-lean pins
+    identical across files, count words checked against the comparator,
+    a vocabulary scan); and an adversarial mock-referee audit of this
+    version's surfaces, whose findings and their resolution are
+    recorded in the repository README's review note. No external
+    reviewer has been involved; nothing here claims otherwise.
 alignment:
   namespace: "TraceForms"
   statements:
+    - source: "Classical (the trace of a tensor product of endomorphisms is the product of the traces — in Mathlib as LinearMap.trace_tensorProduct'; applied to left multiplication by a pure tensor); no source states it for the algebra trace"
+      lean: "TraceForms.trace_tmul"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        General: R a commutative ring, A and B finite free commutative
+        R-algebras; Tr_{A⊗B}(a ⊗ b) = Tr_A(a)·Tr_B(b). Left multiplication
+        by a ⊗ b is TensorProduct.map of the two left multiplications.
+    - source: "Classical; corollary of (1) with Algebra.TensorProduct.tmul_mul_tmul"
+      lean: "TraceForms.traceForm_tmul"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        General: the trace form of A ⊗ B on pure tensors is the product of
+        the trace forms.
+    - source: "Classical (Gram matrix of a tensor product of bilinear forms in a tensor basis is the Kronecker product); no source states it for Algebra.traceMatrix"
+      lean: "TraceForms.traceMatrix_tensorProduct"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        General: for bases bA, bB indexed by arbitrary types, the trace
+        matrix of Basis.tensorProduct bA bB is the Kronecker product of
+        the trace matrices, entrywise from (2).
+    - source: "Khanduja 2019 for the field-level compositum formula; Mathlib's NumberField.natAbs_discr_eq_natAbs_discr_pow_mul_natAbs_discr_pow for its absolute-value form (disclosed prior art); Matrix.det_kronecker for the determinant identity"
+      lean: "TraceForms.discr_tensorProduct"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        General, basis-level, with sign: for finite index types with
+        decidable equality, Algebra.discr of the tensor basis is
+        disc(bA)^|kappa| · disc(bB)^|iota|, from (3) and the determinant of
+        a Kronecker product. Different statement from the Mathlib
+        number-field theorem (arbitrary finite free algebras, exact
+        sign, no integrality or coprimality); neither implies the other.
+    - source: "Classical (tensor product of bilinear forms; Mathlib's QuadraticForm.tmul and associated_tmul supply the tensor product of quadratic forms and its polar form)"
+      lean: "TraceForms.traceForm_toQuadraticMap_tensor"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        General, with 2 invertible in R: the trace quadratic form of A ⊗ B
+        equals QuadraticForm.tmul of the trace quadratic forms of A and B,
+        by comparing polar forms on pure tensors via (2).
+    - source: "Lam 2005, Chapter VIII (the signature is multiplicative on the Witt ring of an ordered field); Sylvester 1852 for the invariance of the sign counts; the (p, n)-refinement stated here for arbitrary forms is proved directly"
+      lean: "TraceForms.sigPos_tmul"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        General: over a linearly ordered field with 2 invertible and
+        finite-dimensional V, W, sigPos(Q1 ⊗ Q2) = p1 p2 + n1 n2. Proof:
+        orthogonal bases of both forms, the tensor family is orthogonal
+        for the tensor form with product weights, Sylvester uniqueness
+        reads sigPos off the weights, and a counting lemma gives the
+        number of positive products.
+    - source: "Lam 2005, Chapter VIII; Sylvester 1852; proved directly"
+      lean: "TraceForms.sigNeg_tmul"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        General: sigNeg(Q1 ⊗ Q2) = p1 n2 + n1 p2, the same route with the
+        count of negative products.
     - source: "Classical (the trace of x^k is the k-th power sum of the roots; Newton's identities on x^3 - x - 1 give 3, 0, 2, 3, 2 — textbook, and in Mathlib's NewtonIdentities file, though the proof computes the traces directly); Hermite 1856 for the Hankel form; Mantilla-Soler 2010 for the integral trace form of a cubic field as a research object"
       lean: "TraceForms.traceMatrix_cubic"
       module: "Solution"
       status: "proved"
       note: >-
-        Entrywise identification of Algebra.traceMatrix of the family
-        1, x, x^2 with !![3,0,2; 0,2,3; 2,3,2]. Proved through the
-        left-multiplication matrices: r^3 = r + 1 rewrites every
-        product r^i r^j into the power basis, and the trace of the
-        left-multiplication matrix gives Tr(r^k) for k <= 4.
-    - source: "Classical (the trace of x^k is the k-th power sum of the roots; Newton's identities on x^4 - x - 1 give 4, 0, 0, 3, 4, 0, 3 — textbook, and in Mathlib's NewtonIdentities file, though the proof computes the traces directly); Hermite 1856 for the Hankel form"
+        Instance: the trace matrix of the power family 1, x, x^2 of
+        Q[x]/(x^3 - x - 1) is the Hankel matrix !![3,0,2; 0,2,3; 2,3,2].
+    - source: "Classical (Newton's identities on x^4 - x - 1 give 4, 0, 0, 3, 4, 0, 3 — textbook; the proof computes the traces directly); Hermite 1856 for the Hankel form"
       lean: "TraceForms.traceMatrix_quartic"
       module: "Solution"
       status: "proved"
       note: >-
-        Entrywise identification of Algebra.traceMatrix of the family
-        1, x, x^2, x^3 with !![4,0,0,3; 0,0,3,4; 0,3,4,0; 3,4,0,3];
-        same route, r^4 = r + 1, traces of r^k for k <= 6.
-    - source: "Classical (disc(x^3 - x - 1) = -4(-1)^3 - 27(-1)^2 = -23); LMFDB 3.1.23.1 for the field discriminant (context)"
+        Instance: the trace matrix of the power family 1, x, x^2, x^3 of
+        Q[x]/(x^4 - x - 1) is the Hankel matrix
+        !![4,0,0,3; 0,0,3,4; 0,3,4,0; 3,4,0,3].
+    - source: "LMFDB 3.1.23.1 (field discriminant -23; monogenic, so the power-basis discriminant is the field discriminant — cited, not formalized)"
       lean: "TraceForms.discr_cubic"
       module: "Solution"
       status: "proved"
       note: >-
-        Algebra.discr of the power family is the determinant of the
-        trace matrix (discr_def), which is -23 by direct evaluation.
-        The power-basis discriminant; its equality with the field
-        discriminant is cited, not formalized.
-    - source: "Classical (disc(x^4 - x - 1) = -283); LMFDB 4.2.283.1 for the field discriminant (context)"
+        Instance: Algebra.discr of the power family is -23, the determinant
+        of the Hankel matrix (8).
+    - source: "LMFDB 4.2.283.1 (field discriminant -283; monogenic — cited, not formalized)"
       lean: "TraceForms.discr_quartic"
       module: "Solution"
       status: "proved"
       note: >-
-        Same route; determinant -283. The power-basis discriminant;
-        its equality with the field discriminant is cited, not
-        formalized.
+        Instance: Algebra.discr of the power family is -283, the
+        determinant of the Hankel matrix (9).
     - source: "Sylvester 1852 (the sign counts of any diagonalisation of a real quadratic form are invariants of the form); the specific diagonalisation with weights 3, 2, -23/6 is this entry's exhibited certificate, an explicit rational congruence"
       lean: "TraceForms.traceForm_cubic_equiv"
       module: "Solution"
       status: "proved"
       note: >-
-        QuadraticMap.Equivalent between the trace form as a quadratic
-        form and weightedSumSquares with the stated weights. The
-        congruence matrix is pushed into a basis, whose basis
-        representation of the trace form is equal to the weighted sum
-        of squares; the isometry is Mathlib's basis-representation
-        isometry.
+        Instance: the cubic trace form is equivalent (isometric) to the
+        weighted sum of squares with weights 3, 2, -23/6.
     - source: "Sylvester 1852 (invariance of the sign counts); the specific diagonalisation with weights 4, 4, -9/4, 283/36 is this entry's exhibited certificate, an explicit rational congruence"
       lean: "TraceForms.traceForm_quartic_equiv"
       module: "Solution"
       status: "proved"
       note: >-
-        Same route for the quartic.
-    - source: "Taussky 1968 (r_1 + r_2 = 2 positive eigenvalues for a cubic field of signature [1, 1]); Hermite 1856 (signature difference 1 = one real root); proved here directly"
+        Instance: the quartic trace form is equivalent to the weighted sum
+        of squares with weights 4, 4, -9/4, 283/36.
+    - source: "Taussky 1968 (r_1 + r_2 = 2 for signature [1, 1]); Hermite 1856 (signature difference 1 = one real root); proved here directly"
       lean: "TraceForms.sigPos_cubic"
       module: "Solution"
       status: "proved"
       note: >-
-        sigPos of the cubic trace form is 2: from the equivalence and
-        QuadraticForm.sigPos_of_equiv_weightedSumSquares, the number of
-        positive weights among 3, 2, -23/6.
-    - source: "Taussky 1968 (r_2 = 1 negative eigenvalue); proved here directly"
+        Instance: sigPos of the cubic trace form is 2.
+    - source: "Taussky 1968 (r_2 = 1); proved here directly"
       lean: "TraceForms.sigNeg_cubic"
       module: "Solution"
       status: "proved"
       note: >-
-        sigNeg of the cubic trace form is 1: the number of negative
-        weights. With sigPos_cubic, signature (2, 1).
-    - source: "Taussky 1968 (r_1 + r_2 = 3 positive eigenvalues for a quartic field of signature [2, 1]); Hermite 1856 (signature difference 2 = two real roots); proved here directly"
+        Instance: sigNeg of the cubic trace form is 1; with (14), signature
+        (2, 1).
+    - source: "Taussky 1968 (r_1 + r_2 = 3 for signature [2, 1]); Hermite 1856 (signature difference 2 = two real roots); proved here directly"
       lean: "TraceForms.sigPos_quartic"
       module: "Solution"
       status: "proved"
       note: >-
-        sigPos of the quartic trace form is 3: the number of positive
-        weights among 4, 4, -9/4, 283/36.
-    - source: "Taussky 1968 (r_2 = 1 negative eigenvalue); proved here directly"
+        Instance: sigPos of the quartic trace form is 3.
+    - source: "Taussky 1968 (r_2 = 1); proved here directly"
       lean: "TraceForms.sigNeg_quartic"
       module: "Solution"
       status: "proved"
       note: >-
-        sigNeg of the quartic trace form is 1. With sigPos_quartic,
-        signature (3, 1).
-    - source: "Classical (the trace of a tensor product of endomorphisms is the product of the traces, in Mathlib as LinearMap.trace_tensorProduct'; applied to left multiplication by a pure tensor)"
+        Instance: sigNeg of the quartic trace form is 1; with (16), signature
+        (3, 1).
+    - source: "Instance of (1)"
       lean: "TraceForms.trace_tmul_compositum"
       module: "Solution"
       status: "proved"
       note: >-
-        In K_3 ⊗_Q K_4, Tr(x ⊗ y) = Tr(x)·Tr(y): left multiplication
-        by x ⊗ y is the tensor product of the two left multiplications
-        (proved by extensionality on pure tensors), and the trace of a
-        tensor product of endomorphisms is the product of the traces.
-    - source: "Classical (the Gram matrix of a tensor product of bilinear forms in the tensor basis is the Kronecker product of the Gram matrices); statements (1)-(2) for the factors"
+        In K_3 ⊗_Q K_4, Tr(x ⊗ y) = Tr(x)·Tr(y).
+    - source: "Instance of (3) with (8)-(9)"
       lean: "TraceForms.traceMatrix_compositum"
       module: "Solution"
       status: "proved"
       note: >-
-        Entrywise from trace_tmul_compositum and the two Gram
-        matrices; the family is (i, j) -> x^i ⊗ y^j on Fin 3 × Fin 4.
-    - source: "Classical (det(A ⊗ B) = det(A)^n det(B)^m, in Mathlib as Matrix.det_kronecker); statements (3)-(4) for the factors"
+        The trace matrix of the tensor power family (i, j) ↦ x^i ⊗ y^j on
+        Fin 3 × Fin 4 is the Kronecker product of the two Hankel matrices.
+    - source: "Instance of (4) with (10)-(11); Khanduja 2019 and the Mathlib absolute-value theorem for the field-level statement (context)"
       lean: "TraceForms.discr_compositum"
       module: "Solution"
       status: "proved"
       note: >-
-        Algebra.discr of the tensor power family is the determinant of
-        the Kronecker product, (-23)^4·(-283)^3. The discriminant OF
-        THE FAMILY; its equality with the compositum's field
-        discriminant is context, not formalized.
-    - source: "Taussky 1968 (r_1 + r_2 = 7 for the compositum's signature [2, 5]); Sylvester 1852 for the invariance; proved here directly by the tensor of the two diagonalising bases"
+        Algebra.discr of the tensor power family is (-23)^4·(-283)^3 — the
+        discriminant OF THE FAMILY; its equality with the compositum's
+        field discriminant is context, not formalized. Derived in the
+        Solution from the general theorem (4).
+    - source: "Instance of (6) with (14)-(17); Taussky 1968 (r_1 + r_2 = 7 for signature [2, 5]) as the classical check"
       lean: "TraceForms.sigPos_compositum"
       module: "Solution"
       status: "proved"
       note: >-
-        sigPos of the compositum trace form is 7: the tensor of the
-        two diagonalising bases is orthogonal with the twelve product
-        weights Dρ_ii·D_jj, of which seven are positive (six (+,+)
-        pairs and one (−,−) pair).
-    - source: "Taussky 1968 (r_2 = 5); proved here directly"
+        sigPos of the compositum trace form is 7 = 2·3 + 1·1, derived from
+        the signature product rule and the factor signatures.
+    - source: "Instance of (7) with (14)-(17); Taussky 1968 (r_2 = 5)"
       lean: "TraceForms.sigNeg_compositum"
       module: "Solution"
       status: "proved"
       note: >-
-        sigNeg of the compositum trace form is 5 (three (−,+) and two
-        (+,−) product weights). With sigPos_compositum, signature
-        (7, 5).
+        sigNeg of the compositum trace form is 5 = 2·1 + 1·3; with (21),
+        signature (7, 5).
     - source: "Classical (a tensor product of two finite field extensions of coprime degrees is a field: they are linearly disjoint; in Mathlib as IntermediateField.LinearDisjoint.of_finrank_coprime with LinearDisjoint.isField_of_forall); Selmer 1956 for the degrees 3 and 4 (irreducibility, re-proved modulo 2 in PdtIrreducible)"
       lean: "TraceForms.isField_compositum"
       module: "Solution"
       status: "proved"
       note: >-
-        K_3 ⊗_Q K_4 is a field. Proved as a generic lemma over an
-        arbitrary base field (tensor product of two field extensions
-        of coprime finite degrees is a field) and specialised to the
-        degrees 3 and 4, which come from the irreducibility of the two
-        trinomials.
-
+        K_3 ⊗_Q K_4 is a field. Proved as a generic lemma over an arbitrary
+        base field (tensor product of two field extensions of coprime
+        finite degrees is a field) and specialised to the degrees 3 and
+        4, which come from the irreducibility of the two trinomials.
 acknowledgements: >-
   Built on Mathlib and the Lean 4 toolchain — with particular thanks
   to the authors of Mathlib's trace and discriminant development and

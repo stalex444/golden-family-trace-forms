@@ -2,6 +2,13 @@
   "challenge_module": "Challenge",
   "solution_module": "Solution",
   "theorem_names": [
+    "TraceForms.trace_tmul",
+    "TraceForms.traceForm_tmul",
+    "TraceForms.traceMatrix_tensorProduct",
+    "TraceForms.discr_tensorProduct",
+    "TraceForms.traceForm_toQuadraticMap_tensor",
+    "TraceForms.sigPos_tmul",
+    "TraceForms.sigNeg_tmul",
     "TraceForms.traceMatrix_cubic",
     "TraceForms.traceMatrix_quartic",
     "TraceForms.discr_cubic",
