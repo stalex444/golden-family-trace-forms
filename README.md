@@ -1,7 +1,8 @@
-# The trace forms of ℚ[x]/(x³ − x − 1) and ℚ[x]/(x⁴ − x − 1)
+# The trace forms of ℚ[x]/(x³ − x − 1) and ℚ[x]/(x⁴ − x − 1), and of their compositum
 
-Gram matrices, discriminants −23 and −283, and Sylvester signatures
-(2,1) and (3,1) — kernel-checked in Lean 4 + Mathlib.
+Gram matrices, discriminants −23 and −283, Sylvester signatures (2,1)
+and (3,1), and the compositum's trace form as their tensor product with
+signature (7,5) — kernel-checked in Lean 4 + Mathlib.
 
 `K₃ = ℚ[x]/(x³ − x − 1)` and `K₄ = ℚ[x]/(x⁴ − x − 1)` are the cubic and
 quartic fields cut out by the trinomials `xⁿ − x − 1`, irreducible over
@@ -11,11 +12,11 @@ form of a number field of degree n is the symmetric bilinear form
 `(x, y) ↦ Tr(xy)`; in the power basis `1, x, …, xⁿ⁻¹` its Gram matrix is
 the Hankel matrix `(Tr xⁱ⁺ʲ)` of the power sums of the roots.
 
-## The ten compared statements
+## The sixteen compared statements
 
 All in `Challenge.lean` (Mathlib vocabulary only, `sorry`-proved as the
 comparison surface) and proved in `Solution.lean` by transfer from the
-four proof modules. Namespace `TraceForms`.
+six proof modules. Namespace `TraceForms`.
 
 | # | name | statement |
 |---|---|---|
@@ -29,6 +30,12 @@ four proof modules. Namespace `TraceForms`.
 | 8 | `sigNeg_cubic` | `sigNeg` of the trace form of `K₃` is 1 |
 | 9 | `sigPos_quartic` | `sigPos` of the trace form of `K₄` is 3 |
 | 10 | `sigNeg_quartic` | `sigNeg` of the trace form of `K₄` is 1 |
+| 11 | `trace_tmul_compositum` | in `K₃ ⊗[ℚ] K₄`, `Tr(x ⊗ y) = Tr(x) · Tr(y)` |
+| 12 | `traceMatrix_compositum` | the trace matrix of the tensor power family `xⁱ ⊗ yʲ` is the Kronecker product of the two Gram matrices |
+| 13 | `discr_compositum` | `Algebra.discr ℚ (xⁱ ⊗ yʲ) = (−23)⁴ · (−283)³` |
+| 14 | `sigPos_compositum` | `sigPos` of the trace form of `K₃ ⊗[ℚ] K₄` is 7 |
+| 15 | `sigNeg_compositum` | `sigNeg` of the trace form of `K₃ ⊗[ℚ] K₄` is 5 |
+| 16 | `isField_compositum` | `K₃ ⊗[ℚ] K₄` is a field (the compositum `ℚ(ρ, Q)`, degree 12) |
 
 `sigPos` and `sigNeg` are Mathlib's basis-free invariants of a
 quadratic form over an ordered field (the maximal dimension of a
@@ -37,6 +44,26 @@ therefore invariants of the fields' trace forms, independent of any
 basis or diagonalisation; the uniqueness half of Sylvester's law of
 inertia (`QuadraticForm.sigPos_of_equiv_weightedSumSquares`) reads
 them off from the explicit diagonalisations 5–6.
+
+## The compositum: the trace form is a tensor product
+
+The degrees 3 and 4 are coprime, so `K₃` and `K₄` are linearly disjoint
+and their tensor product `K₃ ⊗[ℚ] K₄` is a field, the compositum
+`ℚ(ρ, Q)` of degree 12 (statement 16, from Mathlib's coprime-degree
+linear-disjointness criterion). Its trace form is the tensor product of
+the two trace forms: the trace of a pure tensor is the product of the
+traces (11), the Gram matrix of the tensor power family is the Kronecker
+product of the two Gram matrices (12), the discriminant of that family
+is `(−23)⁴ · (−283)³` (13), and the Sylvester signature is `(7, 5)`
+(14–15): the tensor of the two diagonalising bases is orthogonal with
+the twelve product weights, of which six `(+,+)` pairs and one `(−,−)`
+pair are positive and three `(−,+)` and two `(+,−)` are negative. That
+is the tensor rule `(2·3 + 1·1, 2·1 + 1·3)` applied to `(2,1)` and
+`(3,1)`, and it agrees with the classical `(r₁ + r₂, r₂)` for the
+compositum's two real and five complex places (context, not compared).
+The registered compositum entry PALOMAR-2026-09-01-000005 treats the
+same field as `ℚ(ρQ)`, through the degree-12 minimal polynomial of the
+product; that `ℚ(ρ, Q) = ℚ(ρQ)` is a degree count and is context here.
 
 ## The classical setting, and what is not formalized
 
@@ -118,19 +145,22 @@ lake build
 
 Toolchain `leanprover/lean4:v4.31.0`; Mathlib pinned at
 `fabf563a7c95a166b8d7b6efca11c8b4dc9d911f`. `#print axioms` on each of
-the ten compared theorems returns exactly
+the sixteen compared theorems returns exactly
 `[propext, Classical.choice, Quot.sound]`; the audit was also run over
 all 51 theorems of `PdtTraceLink` (57 declarations; the six others are
-definitions) and all theorems of `PdtTraceSignature`. The only `sorry` in the repository are the ten
-placeholders of `Challenge.lean`, which are the comparison surface by
-construction.
+definitions), all theorems of `PdtTraceSignature`, and all 29 theorems
+and lemmas of `PdtTraceCompositum`. The only `sorry` in the repository
+are the sixteen placeholders of `Challenge.lean`, which are the
+comparison surface by construction.
 
 ## Repository layout
 
 | file | content |
 |---|---|
-| `Challenge.lean` | the ten compared statements, Mathlib-only, `sorry`-proved |
-| `Solution.lean` | proofs of the ten statements by transfer from the proof modules |
+| `Challenge.lean` | the sixteen compared statements, Mathlib-only, `sorry`-proved |
+| `Solution.lean` | proofs of the sixteen statements by transfer from the proof modules |
+| `PdtIrreducible.lean` | irreducibility of `x³ − x − 1` and `x⁴ − x − 1` over ℚ by reduction modulo 2 (consumed only by statement 16) |
+| `PdtTraceCompositum.lean` | the tensor-product trace form: `Tr(x ⊗ y) = Tr(x)Tr(y)`, the Kronecker Gram matrix, the discriminant, the orthogonal tensor basis and the `(7, 5)` signature, and the field property of the compositum |
 | `PdtSignature.lean` | the quartic Gram matrix `M`, `det M = −283`, the rational congruence `Pᵀ M P = diag(4, 4, −9/4, 283/36)` |
 | `PdtSignatureRho.lean` | the cubic Gram matrix `Mρ`, `det Mρ = −23`, the congruence to `diag(3, 2, −23/6)` |
 | `PdtTraceLink.lean` | `M` and `Mρ` are `Algebra.traceMatrix` of the power families (traces of the powers of the root via the left-multiplication matrices, from `r⁴ = r + 1` resp. `r³ = r + 1`); the discriminants |
@@ -139,14 +169,15 @@ construction.
 
 ## Provenance
 
-The four proof modules live in the author's public
+The six proof modules live in the author's public
 [pdt-lean](https://github.com/stalex444/pdt-lean) development and are
 copied here byte-for-byte from its revision
-`b0d91802d035dcb83b0486bcc00eb615be791b06`. Two of them predate this
-entry there: `PdtSignature` and `PdtSignatureRho` (June 2026). The other
-two, `PdtTraceLink` and `PdtTraceSignature`, were written for this entry
-on 2026-09-02, developed and committed in pdt-lean at that revision, and
-then copied here. This repository is a
+`52110e34531657b467392ee522b75f8cb7da3ee9`. Three of them predate this
+entry there: `PdtSignature`, `PdtSignatureRho` and `PdtIrreducible`
+(June 2026). The other three, `PdtTraceLink`, `PdtTraceSignature` and
+`PdtTraceCompositum`, were written for this entry on 2026-09-02,
+developed and committed in pdt-lean at that revision, and then copied
+here. This repository is a
 complete, self-contained proof development for the compared
 statements, not a wrapper: everything builds here with the pinned
 toolchain and no import from the parent. The parent's registered entry
@@ -198,8 +229,12 @@ read directly; a Mathlib prior-art sweep at the pin and a literature
 sweep (which located the certification framework disclosed above);
 the mechanical surface gates (names, `sorry` counts, axiom audit,
 provenance pin); and an adversarial mock-referee audit of the
-comparison surface before submission, recorded in the metadata's
-review block.
+ten-statement comparison surface, whose four blocking findings (a
+declaration count, unsourced names, a provenance chronology, and the
+"why these two fields" account) were all resolved. The six compositum
+statements were added after that audit and were checked by the
+mechanical gates, the kernel build and the axiom audit, not by a second
+mock-referee pass.
 
 ## License
 

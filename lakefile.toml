@@ -1,5 +1,5 @@
 name = "golden-family-trace-forms"
-defaultTargets = ["PdtSignature", "PdtSignatureRho", "PdtTraceLink", "PdtTraceSignature", "Challenge", "Solution"]
+defaultTargets = ["PdtSignature", "PdtSignatureRho", "PdtIrreducible", "PdtTraceLink", "PdtTraceSignature", "PdtTraceCompositum", "Challenge", "Solution"]
 
 [[require]]
 name = "mathlib"
@@ -17,6 +17,12 @@ name = "PdtTraceLink"
 
 [[lean_lib]]
 name = "PdtTraceSignature"
+
+[[lean_lib]]
+name = "PdtIrreducible"
+
+[[lean_lib]]
+name = "PdtTraceCompositum"
 
 [[lean_lib]]
 name = "Challenge"

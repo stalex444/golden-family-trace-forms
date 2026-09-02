@@ -119,4 +119,70 @@ theorem sigNeg_quartic :
     sigNeg (Algebra.traceForm ℚ (AdjoinRoot (X ^ 4 - X - 1 : ℚ[X]))).toQuadraticMap = 1 := by
   sorry
 
+/-! ## The compositum
+
+`K₃ ⊗[ℚ] K₄` is the compositum `ℚ(ρ, Q)`: the degrees 3 and 4 are coprime,
+so the two fields are linearly disjoint and their tensor product is a field
+(statement 16, proved here). Its trace form is the tensor product of the two
+trace forms: the trace of a pure tensor is the product of the traces
+(11), the Gram matrix of the tensor power family `xⁱ ⊗ yʲ` is the Kronecker
+product of the two Gram matrices (12), the discriminant of that family is
+`(−23)⁴ · (−283)³` (13), and the Sylvester signature is `(7, 5)` (14)–(15) —
+the tensor rule `(2·3 + 1·1, 2·1 + 1·3)` applied to `(2, 1)` and `(3, 1)`,
+agreeing with the classical `(r₁ + r₂, r₂)` for the compositum's two real and
+five complex places (context, not compared). -/
+
+open scoped TensorProduct
+
+/-- **(11) The trace of a pure tensor is the product of the traces.** -/
+theorem trace_tmul_compositum (x : AdjoinRoot (X ^ 3 - X - 1 : ℚ[X]))
+    (y : AdjoinRoot (X ^ 4 - X - 1 : ℚ[X])) :
+    Algebra.trace ℚ (AdjoinRoot (X ^ 3 - X - 1 : ℚ[X]) ⊗[ℚ] AdjoinRoot (X ^ 4 - X - 1 : ℚ[X]))
+        (x ⊗ₜ y) =
+      Algebra.trace ℚ (AdjoinRoot (X ^ 3 - X - 1 : ℚ[X])) x *
+        Algebra.trace ℚ (AdjoinRoot (X ^ 4 - X - 1 : ℚ[X])) y := by
+  sorry
+
+/-- **(12) The Gram matrix of the compositum is the Kronecker product** of the
+cubic and quartic Gram matrices, in the tensor power family `xⁱ ⊗ yʲ`
+indexed by `Fin 3 × Fin 4`. -/
+theorem traceMatrix_compositum :
+    Algebra.traceMatrix ℚ
+        (fun p : Fin 3 × Fin 4 =>
+          (AdjoinRoot.root (X ^ 3 - X - 1 : ℚ[X]) ^ (p.1 : ℕ)) ⊗ₜ[ℚ]
+            (AdjoinRoot.root (X ^ 4 - X - 1 : ℚ[X]) ^ (p.2 : ℕ))) =
+      Matrix.kroneckerMap (· * ·) !![3, 0, 2; 0, 2, 3; 2, 3, 2]
+        !![4, 0, 0, 3; 0, 0, 3, 4; 0, 3, 4, 0; 3, 4, 0, 3] := by
+  sorry
+
+/-- **(13) The discriminant of the tensor power family** of the compositum is
+`(−23)⁴ · (−283)³`. -/
+theorem discr_compositum :
+    Algebra.discr ℚ
+        (fun p : Fin 3 × Fin 4 =>
+          (AdjoinRoot.root (X ^ 3 - X - 1 : ℚ[X]) ^ (p.1 : ℕ)) ⊗ₜ[ℚ]
+            (AdjoinRoot.root (X ^ 4 - X - 1 : ℚ[X]) ^ (p.2 : ℕ))) =
+      (-23) ^ 4 * (-283) ^ 3 := by
+  sorry
+
+/-- **(14) The compositum trace form has positive index 7.** -/
+theorem sigPos_compositum :
+    sigPos (Algebra.traceForm ℚ
+        (AdjoinRoot (X ^ 3 - X - 1 : ℚ[X]) ⊗[ℚ] AdjoinRoot (X ^ 4 - X - 1 : ℚ[X]))).toQuadraticMap
+      = 7 := by
+  sorry
+
+/-- **(15) The compositum trace form has negative index 5** — signature `(7, 5)`. -/
+theorem sigNeg_compositum :
+    sigNeg (Algebra.traceForm ℚ
+        (AdjoinRoot (X ^ 3 - X - 1 : ℚ[X]) ⊗[ℚ] AdjoinRoot (X ^ 4 - X - 1 : ℚ[X]))).toQuadraticMap
+      = 5 := by
+  sorry
+
+/-- **(16) The tensor product is a field**: the compositum `ℚ(ρ, Q)`, of
+degree 12, since the degrees 3 and 4 are coprime. -/
+theorem isField_compositum :
+    IsField (AdjoinRoot (X ^ 3 - X - 1 : ℚ[X]) ⊗[ℚ] AdjoinRoot (X ^ 4 - X - 1 : ℚ[X])) := by
+  sorry
+
 end TraceForms

@@ -6,7 +6,7 @@ version: "v0.4"
 # review block below).
 
 project:
-  name: "The trace forms of Q[x]/(x^3 - x - 1) and Q[x]/(x^4 - x - 1): Gram matrices, discriminants -23 and -283, and Sylvester signatures (2,1) and (3,1)"
+  name: "The trace forms of Q[x]/(x^3 - x - 1) and Q[x]/(x^4 - x - 1) and of their compositum: Gram matrices, discriminants -23 and -283, Sylvester signatures (2,1) and (3,1), and the tensor-product trace form of signature (7,5)"
   description: >-
     Kernel-checked arithmetic of the trace forms of the two fields cut
     out by the trinomials x^3 - x - 1 and x^4 - x - 1 — the cubic and
@@ -16,8 +16,8 @@ project:
     x^4 = x + 1. The trace form of a number field K of degree n is the
     symmetric bilinear form (x, y) -> Tr(xy); in the power basis
     1, x, ..., x^(n-1) its Gram matrix is the Hankel matrix (Tr x^(i+j))
-    of the power sums of the roots. Ten compared statements, all about
-    these two fields and nothing else. (1)-(2) The Gram matrices,
+    of the power sums of the roots. Sixteen compared statements, all
+    about these two fields and their compositum and nothing else. (1)-(2) The Gram matrices,
     entrywise: Algebra.traceMatrix of the power family equals the
     explicit integer Hankel matrix — power sums 3, 0, 2, 3, 2 for the
     cubic and 4, 0, 0, 3, 4, 0, 3 for the quartic, from Newton's
@@ -32,7 +32,26 @@ project:
     negative-definite subspace) are 2 and 1 for the cubic trace form
     and 3 and 1 for the quartic trace form, read off from (5)-(6)
     through the uniqueness half of Sylvester's law of inertia
-    (QuadraticForm.sigPos_of_equiv_weightedSumSquares). THE CLASSICAL
+    (QuadraticForm.sigPos_of_equiv_weightedSumSquares). (11)-(16) THE
+    COMPOSITUM: the tensor product L = K_3 ⊗_Q K_4 of the two fields is
+    their compositum Q(rho, Q) — the degrees 3 and 4 are coprime, so the
+    fields are linearly disjoint and L is a field, statement (16),
+    proved from Mathlib's coprime-degree linear-disjointness criterion —
+    and its trace form is the TENSOR PRODUCT of the two trace forms:
+    (11) the trace of a pure tensor x ⊗ y is Tr(x)·Tr(y); (12) the Gram
+    matrix of the tensor power family x^i ⊗ y^j, indexed by
+    Fin 3 × Fin 4, is the Kronecker product of the two Gram matrices;
+    (13) the discriminant of that family is (-23)^4·(-283)^3 (the
+    determinant of a Kronecker product); (14)-(15) the Sylvester
+    signature of L's trace form is (7, 5) — the tensor of the two
+    diagonalising bases is orthogonal with the twelve product weights,
+    six (+,+) pairs and one (−,−) pair positive, three (−,+) and two
+    (+,−) negative — agreeing with the classical (r_1 + r_2, r_2) for
+    the compositum's two real and five complex places (context, not
+    compared). The registered compositum entry PALOMAR-2026-09-01-000005
+    treats the same field as Q(rho·Q), through the degree-12 minimal
+    polynomial of the product; that Q(rho, Q) = Q(rho·Q) follows by
+    degree count and is context here, never compared. THE CLASSICAL
     SETTING: the trace form of a number field with r_1 real and r_2
     pairs of complex embeddings has signature (r_1 + r_2, r_2) — for
     the Hankel form of a polynomial this is Hermite's 1856 theorem (the
@@ -355,7 +374,7 @@ sources:
     author_endorsement: "n/a"
 
 related_formalizations:
-  - id: "https://github.com/leanprover-community/mathlib4 (Mathlib/RingTheory/Trace/Defs.lean, Mathlib/RingTheory/Trace/Basic.lean, Mathlib/RingTheory/Discriminant.lean, Mathlib/LinearAlgebra/QuadraticForm/Signature.lean, Mathlib/RingTheory/AdjoinRoot.lean, Mathlib/RingTheory/Polynomial/Selmer.lean)"
+  - id: "https://github.com/leanprover-community/mathlib4 (Mathlib/RingTheory/Trace/Defs.lean, Mathlib/RingTheory/Trace/Basic.lean, Mathlib/RingTheory/Discriminant.lean, Mathlib/LinearAlgebra/QuadraticForm/Signature.lean, Mathlib/RingTheory/AdjoinRoot.lean, Mathlib/RingTheory/Polynomial/Selmer.lean, Mathlib/LinearAlgebra/Trace.lean, Mathlib/LinearAlgebra/Matrix/Kronecker.lean, Mathlib/FieldTheory/LinearDisjoint.lean)"
     relationship: "builds-on"
     note: >-
       Honest accounting of what is consumed, at the pin fabf563a: the
@@ -374,8 +393,18 @@ related_formalizations:
       law of inertia (sigPos, sigNeg,
       QuadraticForm.sigPos_of_equiv_weightedSumSquares,
       sigNeg_of_equiv_weightedSumSquares, QuadraticMap.Equivalent,
-      QuadraticMap.basisRepr, QuadraticMap.weightedSumSquares).
-      Mathlib contains no statement of the (r_1 + r_2, r_2) signature
+      QuadraticMap.basisRepr, QuadraticMap.weightedSumSquares); and, for
+      the compositum, the trace of a tensor product of endomorphisms
+      (LinearMap.trace_tensorProduct'), tensor-product bases
+      (Module.Basis.tensorProduct), the determinant of a Kronecker
+      product (Matrix.det_kronecker), the orthogonal-basis
+      representation (QuadraticMap.basisRepr_eq_of_iIsOrtho), and the
+      coprime-degree linear-disjointness criterion
+      (IntermediateField.LinearDisjoint.of_finrank_coprime with
+      LinearDisjoint.isField_of_forall). Mathlib contains no statement
+      that the trace form of a tensor product of algebras is the tensor
+      product of the trace forms (proved here for pure tensors from
+      trace_tensorProduct'), no statement of the (r_1 + r_2, r_2) signature
       theorem for number fields and no trace-form or discriminant
       computation for either field here (checked at the pin,
       2026-09-02); the ten instance theorems compared here are this
@@ -395,20 +424,25 @@ related_formalizations:
       placed honestly: that framework certifies the stronger
       ring-of-integers discriminant, this entry derives the
       power-basis discriminant from the explicit Gram matrix.
-  - id: "https://github.com/stalex444/pdt-lean (parent development; pinned reference revision: commit b0d91802d035dcb83b0486bcc00eb615be791b06)"
+  - id: "https://github.com/stalex444/pdt-lean (parent development; pinned reference revision: commit 52110e34531657b467392ee522b75f8cb7da3ee9)"
     relationship: "other"
     note: >-
       The broader public project this entry belongs to, and the
-      provenance of the proof modules. The four proof modules of this
+      provenance of the proof modules. The six proof modules of this
       repository — PdtSignature and PdtSignatureRho (the explicit
       Gram matrices and their rational congruences to diagonal form),
+      PdtIrreducible (irreducibility of the two trinomials over Q, by
+      reduction modulo 2, consumed only by the field statement (16)),
       PdtTraceLink (the identification of those matrices with
-      Algebra.traceMatrix of the power families, and the discriminants)
-      and PdtTraceSignature (the isometries and the sigPos/sigNeg
-      invariants) — are copied here byte-for-byte from the pinned
-      revision. Chronology: PdtSignature and PdtSignatureRho predate
-      this entry in the parent (June 2026); PdtTraceLink and
-      PdtTraceSignature were written for this entry on 2026-09-02,
+      Algebra.traceMatrix of the power families, and the discriminants),
+      PdtTraceSignature (the isometries and the sigPos/sigNeg
+      invariants) and PdtTraceCompositum (the tensor-product trace form,
+      its Kronecker Gram matrix, discriminant and signature, and the
+      field property of the compositum) — are copied here byte-for-byte
+      from the pinned revision. Chronology: PdtSignature,
+      PdtSignatureRho and PdtIrreducible predate this entry in the
+      parent (June 2026); PdtTraceLink, PdtTraceSignature and
+      PdtTraceCompositum were written for this entry on 2026-09-02,
       developed and committed in the parent at the pinned revision,
       then copied here. This repository
       is a complete, self-contained proof development for the compared
@@ -421,11 +455,15 @@ related_formalizations:
     relationship: "other"
     note: >-
       CONTEXT, NOT COMPARED CONTENT. The registered sibling treats the
-      compositum of the same two fields (its degree-12 minimal
-      polynomial, conjugate census, and unit-ness of the product of the
-      two roots). Nothing about trace forms, discriminants, or
+      compositum of the same two fields as Q(rho·Q) (its degree-12
+      minimal polynomial, conjugate census, and unit-ness of the product
+      of the two roots). Nothing about trace forms, discriminants, or
       signatures is registered there, and nothing from it is
-      re-compared here.
+      re-compared here. The compositum statements (11)-(16) of this
+      entry are about the tensor product K_3 ⊗_Q K_4, proved a field in
+      (16); its identification with the sibling's Q(rho·Q) is a degree
+      count (both have degree 12 and one contains the other) and is
+      context, never compared.
   - id: "Registered entry PALOMAR-2026-09-01-000012 (stalex444/golden-family-boundary @ fc43a62561b4d7846ca25273229a4f964dff7ae5)"
     relationship: "other"
     note: >-
@@ -438,8 +476,8 @@ related_formalizations:
 
 status:
   scope: >-
-    Formalized, ten compared theorems, no hypotheses (every statement
-    is closed). (1) traceMatrix_cubic and (2) traceMatrix_quartic —
+    Formalized, sixteen compared theorems, no hypotheses (every
+    statement is closed). (1) traceMatrix_cubic and (2) traceMatrix_quartic —
     Algebra.traceMatrix of the power family 1, x, ..., x^(n-1) of
     Q[x]/(x^n - x - 1) equals the explicit integer Hankel matrix of the
     power sums, for n = 3 and n = 4. (3) discr_cubic and (4)
@@ -448,28 +486,42 @@ status:
     the trace form as a quadratic form is equivalent to the weighted
     sum of squares with weights 3, 2, -23/6 resp. 4, 4, -9/4, 283/36.
     (7)-(8) sigPos_cubic = 2, sigNeg_cubic = 1; (9)-(10)
-    sigPos_quartic = 3, sigNeg_quartic = 1. NOT formalized: the
-    classical (r_1 + r_2, r_2) theorem (Hermite 1856, Taussky 1968) —
-    the two instances are proved directly; the embedding counts r_1,
-    r_2 and the real-root counts of the trinomials (context, from the
-    registered family entry and the LMFDB records); the identification
-    of the power-basis discriminants with the field discriminants
-    (the power bases are integral bases — LMFDB, cited). Irreducibility
-    of the two trinomials (Selmer, in Mathlib) is not invoked by any
-    compared statement.
+    sigPos_quartic = 3, sigNeg_quartic = 1. (11) trace_tmul_compositum
+    — in K_3 ⊗_Q K_4, Tr(x ⊗ y) = Tr(x)·Tr(y). (12)
+    traceMatrix_compositum — the trace matrix of the tensor power family
+    (i, j) -> x^i ⊗ y^j is the Kronecker product of the two Gram
+    matrices. (13) discr_compositum — Algebra.discr of that family is
+    (-23)^4·(-283)^3. (14)-(15) sigPos_compositum = 7,
+    sigNeg_compositum = 5. (16) isField_compositum — K_3 ⊗_Q K_4 is a
+    field. NOT formalized: the classical (r_1 + r_2, r_2) theorem
+    (Hermite 1856, Taussky 1968) — the three instances are proved
+    directly; the embedding counts r_1, r_2 and the real-root counts of
+    the trinomials (context, from the registered family entry and the
+    LMFDB records); the identification of the power-basis
+    discriminants with the field discriminants (the power bases are
+    integral bases — LMFDB, cited), and likewise for the compositum
+    (the tensor power family is an integral basis because the two
+    discriminants are coprime — the standard integral-basis theorem
+    for linearly disjoint fields, context only); the identification
+    Q(rho, Q) = Q(rho·Q) with the registered compositum entry's field
+    (degree count, context). Irreducibility of the two trinomials
+    (Selmer, in Mathlib; re-proved by reduction modulo 2 in the
+    proof module PdtIrreducible) is consumed only by (16), through the
+    finrank computations 3 and 4, and by no other compared statement.
   sorry_count: 0
   sorry_in_definitions: 0
   axioms: ["propext", "Classical.choice", "Quot.sound"]
   # Every compared theorem's #print axioms output is exactly [propext,
   # Classical.choice, Quot.sound]; the axiom audit was run over all 51
   # theorems of PdtTraceLink (57 declarations; the six others are
-  # definitions) and all theorems of PdtTraceSignature as well. The
-  # Challenge module carries the ten
+  # definitions), all theorems of PdtTraceSignature, and all 29
+  # theorems and lemmas of PdtTraceCompositum as well. The
+  # Challenge module carries the sixteen
   # statements sorry-proved as the comparison surface; Solution proves
-  # all of them by transfer from the four proof modules. sorry_count is
-  # over the proof development (the four modules and Solution); the ten
-  # Challenge placeholders are the comparison surface by construction
-  # and are the only `sorry` in the repository.
+  # all of them by transfer from the six proof modules. sorry_count is
+  # over the proof development (the six modules and Solution); the
+  # sixteen Challenge placeholders are the comparison surface by
+  # construction and are the only `sorry` in the repository.
 
 automation:
   methods:
@@ -491,8 +543,14 @@ automation:
         theorems axiom-audited (57 declarations, six of them
         definitions); PdtTraceSignature (the isometries and the
         sigPos/sigNeg invariants) in eleven of twelve budgeted builds,
-        about thirty-five minutes. The comparison surface (Challenge,
-        Solution) was then written and built green in this repository.
+        about thirty-five minutes; PdtTraceCompositum (the
+        tensor-product trace form, Kronecker Gram matrix, discriminant,
+        signature (7, 5), and the field property of the compositum) in
+        five of twelve budgeted builds, about thirty-five minutes, all
+        29 of its theorems and lemmas axiom-audited. The comparison
+        surface (Challenge, Solution) was then written and built green
+        in this repository, first with ten statements and then extended
+        to sixteen.
       cost:
         wall_time: "one session, 2026-09-02"
         spend_usd: "subscription-based"
@@ -506,7 +564,17 @@ automation:
         of the trace form is EQUAL, not merely isometric, to the
         weighted sum of squares, and Mathlib's Sylvester uniqueness
         then reads off sigPos and sigNeg; this avoided the
-        associated-form and orthogonal-basis machinery entirely.
+        associated-form and orthogonal-basis machinery entirely. The
+        compositum module's route: left multiplication by a pure tensor
+        is the tensor product of the two left multiplications, so
+        Mathlib's trace_tensorProduct' gives the trace of a pure tensor
+        as the product of traces; the tensor of the two diagonalising
+        bases is then orthogonal with the twelve product weights, and
+        Sylvester uniqueness gives (7, 5); the field property is
+        Mathlib's coprime-degree linear-disjointness criterion, proved
+        over a generic base field and specialised (over the concrete
+        rationals a competing algebra instance blocks the direct
+        application).
     - method: "manual"
       models: []
       framework: "n/a"
@@ -557,7 +625,18 @@ fidelity:
     statement is meaningful, and proved, for the quotient algebra as
     such; (g) the proof modules keep the parent development's file
     names (Pdt-prefixed) and namespace PDT; the compared surface lives
-    in the namespace TraceForms and mentions neither.
+    in the namespace TraceForms and mentions neither; (h) the
+    compositum statements (11)-(16) are about the tensor product
+    K_3 ⊗_Q K_4 as a Q-algebra, with the tensor power family
+    (i, j) -> x^i ⊗ y^j entering as a family indexed by Fin 3 × Fin 4;
+    (16) proves that algebra is a field, so "the compositum" in the
+    prose is the tensor product itself, and its identification with
+    the registered entry's Q(rho·Q) is context; (i) the compositum
+    signature is again stated through sigPos and sigNeg, and the
+    prose's "tensor rule (2·3 + 1·1, 2·1 + 1·3)" describes the proof's
+    weight count, not a compared statement; (j) (13) is the
+    discriminant of the tensor power family; its equality with the
+    field discriminant of the compositum is context, not formalized.
 
 review:
   status: "self-assessed"
@@ -582,10 +661,15 @@ review:
     zero elsewhere; axiom audit over every compared declaration;
     provenance pin present; the fidelity list checked against the
     statements); and an adversarial mock-referee audit of the
-    comparison surface (mathematical fidelity, kernel integrity,
-    metadata and citations, repository prose) before submission — its
-    findings and their resolution are recorded in the repository
-    README's review note.
+    ten-statement comparison surface (mathematical fidelity, kernel
+    integrity, metadata and citations, repository prose) — four
+    blocking findings, all resolved: a declaration count corrected,
+    every named result given a source entry, one provenance chronology
+    stated in both files, and the "why these two fields" account
+    added. The six compositum statements were added after that audit
+    and were checked by the mechanical gates, the kernel build and the
+    axiom audit, not by a second mock-referee pass; the README's review
+    note records the same.
 
 alignment:
   namespace: "TraceForms"
@@ -671,6 +755,58 @@ alignment:
       note: >-
         sigNeg of the quartic trace form is 1. With sigPos_quartic,
         signature (3, 1).
+    - source: "Classical (the trace of a tensor product of endomorphisms is the product of the traces, in Mathlib as LinearMap.trace_tensorProduct'; applied to left multiplication by a pure tensor)"
+      lean: "TraceForms.trace_tmul_compositum"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        In K_3 ⊗_Q K_4, Tr(x ⊗ y) = Tr(x)·Tr(y): left multiplication
+        by x ⊗ y is the tensor product of the two left multiplications
+        (proved by extensionality on pure tensors), and the trace of a
+        tensor product of endomorphisms is the product of the traces.
+    - source: "Classical (the Gram matrix of a tensor product of bilinear forms in the tensor basis is the Kronecker product of the Gram matrices); statements (1)-(2) for the factors"
+      lean: "TraceForms.traceMatrix_compositum"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        Entrywise from trace_tmul_compositum and the two Gram
+        matrices; the family is (i, j) -> x^i ⊗ y^j on Fin 3 × Fin 4.
+    - source: "Classical (det(A ⊗ B) = det(A)^n det(B)^m, in Mathlib as Matrix.det_kronecker); statements (3)-(4) for the factors"
+      lean: "TraceForms.discr_compositum"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        Algebra.discr of the tensor power family is the determinant of
+        the Kronecker product, (-23)^4·(-283)^3. The discriminant OF
+        THE FAMILY; its equality with the compositum's field
+        discriminant is context, not formalized.
+    - source: "Taussky 1968 (r_1 + r_2 = 7 for the compositum's signature [2, 5]); Sylvester 1852 for the invariance; proved here directly by the tensor of the two diagonalising bases"
+      lean: "TraceForms.sigPos_compositum"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        sigPos of the compositum trace form is 7: the tensor of the
+        two diagonalising bases is orthogonal with the twelve product
+        weights Dρ_ii·D_jj, of which seven are positive (six (+,+)
+        pairs and one (−,−) pair).
+    - source: "Taussky 1968 (r_2 = 5); proved here directly"
+      lean: "TraceForms.sigNeg_compositum"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        sigNeg of the compositum trace form is 5 (three (−,+) and two
+        (+,−) product weights). With sigPos_compositum, signature
+        (7, 5).
+    - source: "Classical (a tensor product of two finite field extensions of coprime degrees is a field: they are linearly disjoint; in Mathlib as IntermediateField.LinearDisjoint.of_finrank_coprime with LinearDisjoint.isField_of_forall); Selmer 1956 for the degrees 3 and 4 (irreducibility, re-proved modulo 2 in PdtIrreducible)"
+      lean: "TraceForms.isField_compositum"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        K_3 ⊗_Q K_4 is a field. Proved as a generic lemma over an
+        arbitrary base field (tensor product of two field extensions
+        of coprime finite degrees is a field) and specialised to the
+        degrees 3 and 4, which come from the irreducibility of the two
+        trinomials.
 
 acknowledgements: >-
   Built on Mathlib and the Lean 4 toolchain — with particular thanks

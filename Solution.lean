@@ -13,6 +13,7 @@ import PdtSignature
 import PdtSignatureRho
 import PdtTraceLink
 import PdtTraceSignature
+import PdtTraceCompositum
 
 namespace TraceForms
 
@@ -59,18 +60,18 @@ theorem traceMatrix_quartic :
 theorem discr_cubic :
     Algebra.discr ℚ
         (fun i : Fin 3 => AdjoinRoot.root (X ^ 3 - X - 1 : ℚ[X]) ^ (i : ℕ)) = -23 := by
-  rw [Algebra.discr_def]
-  show (Algebra.traceMatrix ℚ (fun i : Fin 3 => AdjoinRoot.root PDT.fρ ^ (i : ℕ))).det = -23
-  rw [powρ_eq, PDT.traceMatrix_bρ]
-  exact PDT.detMρ
+  have h : Algebra.discr ℚ (fun i : Fin 3 => AdjoinRoot.root PDT.fρ ^ (i : ℕ)) = -23 := by
+    rw [powρ_eq, Algebra.discr_def]
+    exact (congrArg Matrix.det PDT.traceMatrix_bρ).trans PDT.detMρ
+  exact h
 
 theorem discr_quartic :
     Algebra.discr ℚ
         (fun i : Fin 4 => AdjoinRoot.root (X ^ 4 - X - 1 : ℚ[X]) ^ (i : ℕ)) = -283 := by
-  rw [Algebra.discr_def]
-  show (Algebra.traceMatrix ℚ (fun i : Fin 4 => AdjoinRoot.root PDT.fQ ^ (i : ℕ))).det = -283
-  rw [powQ_eq, PDT.traceMatrix_bQ]
-  exact PDT.det_M
+  have h : Algebra.discr ℚ (fun i : Fin 4 => AdjoinRoot.root PDT.fQ ^ (i : ℕ)) = -283 := by
+    rw [powQ_eq, Algebra.discr_def]
+    exact (congrArg Matrix.det PDT.traceMatrix_bQ).trans PDT.det_M
+  exact h
 
 theorem traceForm_cubic_equiv :
     QuadraticMap.Equivalent
@@ -103,5 +104,68 @@ theorem sigPos_quartic :
 theorem sigNeg_quartic :
     sigNeg (Algebra.traceForm ℚ (AdjoinRoot (X ^ 4 - X - 1 : ℚ[X]))).toQuadraticMap = 1 :=
   PDT.sigNeg_traceQ
+
+/-! ## The compositum: transfers from `PdtTraceCompositum` -/
+
+open scoped TensorProduct
+
+/-- the tensor power family is the tensor basis `bL` of the proof module -/
+private theorem powL_eq :
+    (fun p : Fin 3 × Fin 4 =>
+        (AdjoinRoot.root PDT.fρ ^ (p.1 : ℕ)) ⊗ₜ[ℚ] (AdjoinRoot.root PDT.fQ ^ (p.2 : ℕ))) =
+      ⇑PDT.bL := by
+  funext p
+  rw [PDT.bL_apply, PDT.bρ_apply, PDT.bQ_apply]
+
+theorem trace_tmul_compositum (x : AdjoinRoot (X ^ 3 - X - 1 : ℚ[X]))
+    (y : AdjoinRoot (X ^ 4 - X - 1 : ℚ[X])) :
+    Algebra.trace ℚ (AdjoinRoot (X ^ 3 - X - 1 : ℚ[X]) ⊗[ℚ] AdjoinRoot (X ^ 4 - X - 1 : ℚ[X]))
+        (x ⊗ₜ y) =
+      Algebra.trace ℚ (AdjoinRoot (X ^ 3 - X - 1 : ℚ[X])) x *
+        Algebra.trace ℚ (AdjoinRoot (X ^ 4 - X - 1 : ℚ[X])) y :=
+  PDT.trace_tmul x y
+
+theorem traceMatrix_compositum :
+    Algebra.traceMatrix ℚ
+        (fun p : Fin 3 × Fin 4 =>
+          (AdjoinRoot.root (X ^ 3 - X - 1 : ℚ[X]) ^ (p.1 : ℕ)) ⊗ₜ[ℚ]
+            (AdjoinRoot.root (X ^ 4 - X - 1 : ℚ[X]) ^ (p.2 : ℕ))) =
+      Matrix.kroneckerMap (· * ·) !![3, 0, 2; 0, 2, 3; 2, 3, 2]
+        !![4, 0, 0, 3; 0, 0, 3, 4; 0, 3, 4, 0; 3, 4, 0, 3] := by
+  show Algebra.traceMatrix ℚ
+      (fun p : Fin 3 × Fin 4 =>
+        (AdjoinRoot.root PDT.fρ ^ (p.1 : ℕ)) ⊗ₜ[ℚ] (AdjoinRoot.root PDT.fQ ^ (p.2 : ℕ))) =
+    Matrix.kroneckerMap (· * ·) PDT.Mρ PDT.M
+  rw [powL_eq]
+  exact PDT.traceMatrix_bL
+
+theorem discr_compositum :
+    Algebra.discr ℚ
+        (fun p : Fin 3 × Fin 4 =>
+          (AdjoinRoot.root (X ^ 3 - X - 1 : ℚ[X]) ^ (p.1 : ℕ)) ⊗ₜ[ℚ]
+            (AdjoinRoot.root (X ^ 4 - X - 1 : ℚ[X]) ^ (p.2 : ℕ))) =
+      (-23) ^ 4 * (-283) ^ 3 := by
+  show Algebra.discr ℚ
+      (fun p : Fin 3 × Fin 4 =>
+        (AdjoinRoot.root PDT.fρ ^ (p.1 : ℕ)) ⊗ₜ[ℚ] (AdjoinRoot.root PDT.fQ ^ (p.2 : ℕ))) =
+    (-23) ^ 4 * (-283) ^ 3
+  rw [powL_eq]
+  exact PDT.discr_bL
+
+theorem sigPos_compositum :
+    sigPos (Algebra.traceForm ℚ
+        (AdjoinRoot (X ^ 3 - X - 1 : ℚ[X]) ⊗[ℚ] AdjoinRoot (X ^ 4 - X - 1 : ℚ[X]))).toQuadraticMap
+      = 7 :=
+  PDT.sigPos_traceL
+
+theorem sigNeg_compositum :
+    sigNeg (Algebra.traceForm ℚ
+        (AdjoinRoot (X ^ 3 - X - 1 : ℚ[X]) ⊗[ℚ] AdjoinRoot (X ^ 4 - X - 1 : ℚ[X]))).toQuadraticMap
+      = 5 :=
+  PDT.sigNeg_traceL
+
+theorem isField_compositum :
+    IsField (AdjoinRoot (X ^ 3 - X - 1 : ℚ[X]) ⊗[ℚ] AdjoinRoot (X ^ 4 - X - 1 : ℚ[X])) :=
+  PDT.L_isField
 
 end TraceForms

@@ -11,7 +11,13 @@
     "TraceForms.sigPos_cubic",
     "TraceForms.sigNeg_cubic",
     "TraceForms.sigPos_quartic",
-    "TraceForms.sigNeg_quartic"
+    "TraceForms.sigNeg_quartic",
+    "TraceForms.trace_tmul_compositum",
+    "TraceForms.traceMatrix_compositum",
+    "TraceForms.discr_compositum",
+    "TraceForms.sigPos_compositum",
+    "TraceForms.sigNeg_compositum",
+    "TraceForms.isField_compositum"
   ],
   "permitted_axioms": [
     "propext",
