@@ -82,7 +82,7 @@ project:
     Dahmen): they certify rings of integers, FIELD discriminants (as
     the determinant of the trace matrix of a certified integral basis)
     and, in the sequel, the signature (r_1, r_2) by real-root
-      counting, for LMFDB entries at large; neither treats the trace
+    counting, for LMFDB entries at large; neither treats the trace
     form's Sylvester signature, and their published example sets (seven
     non-monogenic cubic fields unramified outside 2, 3, 5 in the
     first; the v1 example directory of the second) contain neither of

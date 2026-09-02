@@ -100,7 +100,7 @@ Baanen, Chavarri Villarello and Dahmen ([CPP
 2025](https://doi.org/10.1145/3703595.3705874)) and its 2026 sequel
 ([arXiv:2607.26230](https://arxiv.org/abs/2607.26230)): certified rings
 of integers and field discriminants, then signatures `(r₁, r₂)` by
-Sturm root counting, unit groups and class groups, for LMFDB entries at
+real-root counting, unit groups and class groups, for LMFDB entries at
 large. Neither treats the trace form's Sylvester signature, and their
 published example sets contain neither of the two fields here (checked
 2026-09-02). The entry is not aware of a formalization of a number
