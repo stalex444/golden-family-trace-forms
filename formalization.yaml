@@ -446,7 +446,7 @@ related_formalizations:
       developed and committed in the parent at the pinned revision,
       then copied here. This repository
       is a complete, self-contained proof development for the compared
-      statements, not a wrapper: the four modules, the Challenge and
+      statements, not a wrapper: the six modules, the Challenge and
       the Solution build here with the pinned toolchain and no import
       from the parent. The parent's registered entry
       PALOMAR-2026-08-19-000007 compared none of the statements
@@ -556,7 +556,8 @@ automation:
         spend_usd: "subscription-based"
         hardware: "local machine"
       prompting_notes: >-
-        Statements fixed first (the ten compared forms, in Mathlib
+        Statements fixed first (the sixteen compared forms — ten, then six
+        for the compositum — in Mathlib
         vocabulary only); proofs iterated against the compiler module
         by module. The signature module's route: the congruence matrix
         is pushed into a basis (the image of the power basis under the
