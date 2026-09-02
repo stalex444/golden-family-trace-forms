@@ -37,7 +37,11 @@ quadratic form over an ordered field, the maximal dimensions of a
 positive- and a negative-definite subspace. Statements 6–7 are the
 `(p, n)`-refinement of the classical fact that the signature is
 multiplicative on the Witt ring of an ordered field (Lam 2005, Chapter
-VIII), stated for arbitrary, possibly degenerate forms. None of 1–7 is in
+VIII), stated for arbitrary, possibly degenerate forms. The Witt-ring
+statement gives only the difference `p − n`; recovering `p` and `n`
+separately for a possibly degenerate tensor product would also need the
+dimension of the radical of a tensor product, which Mathlib does not have
+either. The entry proves the two counts directly, without the Witt ring. None of 1–7 is in
 Mathlib at the pin; they are built from Mathlib's trace of a tensor
 product of endomorphisms, tensor bases, the determinant of a Kronecker
 product, the tensor product of quadratic forms, orthogonal bases, and the
@@ -267,5 +271,13 @@ opening account first. Checks applied before this submission: the kernel
 build; the axiom audit of every compared theorem and every proof-module
 theorem; the mechanical surface gates (names in both Lean files, `sorry`
 counts, pins, count words against the comparator, vocabulary); and an
-adversarial mock-referee audit of this version's surfaces, whose
-findings and their resolution are recorded below once complete.
+adversarial mock-referee audit of this version's surfaces. That audit
+returned three blocking items — the version not yet committed at audit
+time, one stale count phrase in the metadata, and a dangling clause in
+this note — and two non-blocking ones (a stale module count in the
+automation notes; a manifest package name copied from a sibling entry);
+all five were resolved before submission. Its assessment of the
+mathematics is recorded here as given: the general theorems are new
+kernel content, statements 6–7 the most defensible against the
+"classical instance" reading, statements 1–5 short generalisations of
+library facts.

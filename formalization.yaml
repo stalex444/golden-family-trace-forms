@@ -30,8 +30,13 @@ project:
     negative-definite subspace). (6)-(7) are the (p, n)-refinement of
     the multiplicativity of the signature homomorphism on the Witt ring
     of an ordered field (Lam 2005, Chapter VIII), stated for arbitrary
-    (possibly degenerate) forms; proved by orthogonal bases and the
-    uniqueness half of Sylvester's law. None of (1)-(7) was in Mathlib
+    (possibly degenerate) forms and proved by orthogonal bases and the
+    uniqueness half of Sylvester's law. The Witt-ring statement gives
+    only the difference p - n; recovering p and n separately for a
+    possibly degenerate tensor product would in addition need the
+    dimension of the radical of a tensor product, which Mathlib does
+    not have either; the entry proves the two counts directly, without
+    the Witt ring, which is not formalized. None of (1)-(7) was in Mathlib
     at the pin; Mathlib's nearest results are the trace of a tensor
     product of endomorphisms (LinearMap.trace_tensorProduct'), the
     determinant of a Kronecker product, the tensor product of quadratic
@@ -496,7 +501,7 @@ related_formalizations:
       no statement of the (r_1 + r_2, r_2) signature
       theorem for number fields and no trace-form or discriminant
       computation for either field here (checked at the pin,
-      2026-09-02); the ten instance theorems compared here are this
+      2026-09-02); the sixteen instance theorems (8)-(23) compared here are this
       entry's contribution.
   - id: "https://github.com/alainchmt/RingOfIntegersProject and https://github.com/alainchmt/CertifyingInvariantsNF (tag v1) — the Baanen-Chavarri Villarello-Dahmen certification framework"
     relationship: "other"
@@ -636,8 +641,7 @@ automation:
         declaration kernel-checked and axiom-audited (#print axioms:
         propext, Classical.choice, Quot.sound). The two matrix modules
         (PdtSignature, PdtSignatureRho: explicit congruences,
-        determinants) predate this entry in the parent development. The
-        two modules written for this entry, 2026-09-02, were each built
+        determinants) predate this entry in the parent development. The four modules written for this entry, 2026-09-02, were each built
         under a declared build budget: PdtTraceLink (traces of the
         powers of the root through the left-multiplication matrices,
         the trace matrices, the discriminants) within a budget of
